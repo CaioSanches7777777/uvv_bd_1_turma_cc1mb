@@ -10,7 +10,7 @@ nome_meio char,
 /*Essa linha cria a coluna nome_meio da tabela funcionario, e pode ser preenchida com o nome do meio do funcionario.*/
 
 ultimo_nome varchar(15) NOT NULL, 
-/*Essa linha cria a coluna ultimo_nome da tabela funcionario, e deve ser preenchida com o último nome do funcionario.*/
+/*Essa linha cria a coluna ultimo_nome da tabela funcionario, e deve ser preenchida com o Ãºltimo nome do funcionario.*/
 
 cpf char(11) NOT NULL, 
 /*Essa linha cria a coluna cpf da tabela funcionario, e deve ser preenchida com o CPF do funcionario.*/
@@ -19,19 +19,19 @@ data_nascimento date,
 /*Essa linha cria a coluna data_nascimento da tabela funcionario, e pode ser preenchida com a data de nascimento do funcionario.*/
 
 endereco varchar(30), 
-/*Essa linha cria a coluna endereco da tabela funcionario, e pode ser preenchida com o endereço do funcionario.*/
+/*Essa linha cria a coluna endereco da tabela funcionario, e pode ser preenchida com o endereÃ§o do funcionario.*/
 
 sexo char, 
 /*Essa linha cria a coluna sexo da tabela funcionario, e pode ser preenchida com o sexo do funcionario.*/
 
 salario decimal(10,2), 
-/*Essa linha cria a coluna salario da tabela funcionario, e deve ser preenchida com o salário do funcionario.*/
+/*Essa linha cria a coluna salario da tabela funcionario, e deve ser preenchida com o salÃ¡rio do funcionario.*/
 
 cpf_supervisor char(11),
 /*Essa linha cria a coluna cpf_supervisor da tabela funcionario, e deve ser preenchida com o CPF do supervisor do funcionario.*/
 
 numero_departamento int NOT NULL,
-/*Essa linha cria a coluna  da tabela , e deve ser preenchida com o número do departamento do funcionario.*/
+/*Essa linha cria a coluna  da tabela , e deve ser preenchida com o nÃºmero do departamento do funcionario.*/
 
 PRIMARY KEY (cpf)
 /*Essa linha cria a chave primaria cpf da tabela funcionario.*/
@@ -67,10 +67,10 @@ CREATE TABLE localizacoes_departamento (
 /*Esse bloco cria a tabela localizacoes_departamento, suas colunas e chaves.*/
 
 numero_departamento int NOT NULL,
-/*Essa linha cria a coluna numero_departamento da tabela localizacoes_departamento, e será uma chave primaria e a chave estrangeira da coluna que referencia a chave (numero_departamento) da tabela departamento.*/
+/*Essa linha cria a coluna numero_departamento da tabela localizacoes_departamento, e serÃ¡ uma chave primaria e a chave estrangeira da coluna que referencia a chave (numero_departamento) da tabela departamento.*/
 
 local varchar(15) NOT NULL,
-/*Essa linha cria a coluna local da tabela localizacoes_departamento, e será uma chave primaria que deve ser preenchida com o local do departamento.*/
+/*Essa linha cria a coluna local da tabela localizacoes_departamento, e serÃ¡ uma chave primaria que deve ser preenchida com o local do departamento.*/
 
 PRIMARY KEY (numero_departamento, local),
 /*Essa linha cria as chaves primarias da tabela localizacoes_departamento.*/
@@ -86,13 +86,13 @@ nome_projeto varchar(15) NOT NULL,
 /*Essa linha cria a coluna nome_projeto da tabela projeto, e deve ser preenchida com o nome do projeto.*/
 
 numero_projeto int NOT NULL,
-/*Essa linha cria a coluna numero_projeto da tabela projeto, e deve ser preenchida com o número do projeto.*/
+/*Essa linha cria a coluna numero_projeto da tabela projeto, e deve ser preenchida com o nÃºmero do projeto.*/
 
 local_projeto varchar(15),
 /*Essa linha cria a coluna local_projeto da tabela projeto, e pode ser preenchida com o local do projeto.*/
 
 numero_departamento int NOT NULL,
-/*Essa linha cria a coluna numero_departamento da tabela projeto, e deve ser preenchida com o número do departamento.*/
+/*Essa linha cria a coluna numero_departamento da tabela projeto, e deve ser preenchida com o nÃºmero do departamento.*/
 
 PRIMARY KEY (numero_projeto),
 /*Essa linha cria a chave primaria da tabela projeto.*/
@@ -111,10 +111,10 @@ cpf_funcionario char(11) NOT NULL,
 /*Essa linha cria a coluna cpf_funcionario da tabela trabalha_em, e deve ser preenchida com o CPF do funcionario.*/
 
 numero_projeto int NOT NULL,
-/*Essa linha cria a coluna numero_projeto da tabela trabalha_em, e deve ser preenchida com o número do projeto no qual o funcionario está trabalhando.*/
+/*Essa linha cria a coluna numero_projeto da tabela trabalha_em, e deve ser preenchida com o nÃºmero do projeto no qual o funcionario estÃ¡ trabalhando.*/
 
 horas decimal(3,1) NOT NULL,
-/*Essa linha cria a coluna horas da tabela trabalha_em, e deve ser preenchida com o número de horas invastidas no projeto.*/
+/*Essa linha cria a coluna horas da tabela trabalha_em, e deve ser preenchida com o nÃºmero de horas invastidas no projeto.*/
 
 PRIMARY KEY (cpf_funcionario, numero_projeto),
 /*Essa linha cria a chave primaria da tabela trabalha_em.*/
@@ -151,3 +151,9 @@ FOREIGN KEY (cpf_funcionario) REFERENCES funcionario(cpf)
 /*Essa linha cria a chave estrangeira cpf_funcionario da tabela dependente, que referencia a chave primaria cpf da tabela funcionario.*/
 );
 
+comment on table funcionario is 'Tabela com os dados do funcionario.';
+comment on table departamento  is 'Tabela com os dados do departamento.';
+comment on table dependente  is 'Tabela com os dados do dependente de um funcionario.';
+comment on table localizacoes_departamento is 'Tabela com os dados da localizaÃ§Ã£o do departamento.';
+comment on table trabalha_em  is 'Tabela com os dados do trabalho.';
+comment on table projeto  is 'Tabela com os dados do projeto.';
