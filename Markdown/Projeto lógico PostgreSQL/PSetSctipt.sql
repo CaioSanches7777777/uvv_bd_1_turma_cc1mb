@@ -155,3 +155,101 @@ comment on table dependente  is 'Tabela com os dados do dependente de um funcion
 comment on table localizacoes_departamento is 'Tabela com os dados da localização do departamento.';
 comment on table trabalha_em  is 'Tabela com os dados do trabalho.';
 comment on table projeto  is 'Tabela com os dados do projeto.';
+
+
+/*Todos os comandos insert a seguir são utilizados para inserir os dados nas suas respectivas tabelas e colunas.*/
+insert into funcionario(primeiro_nome, nome_meio, ultimo_nome, cpf, data_nascimento, endereco, sexo, salario, cpf_supervisor, numero_departamento) 
+values('João', 'B', 'Silva', '12345678966', '1965-01-09', 'Rua das Flores, 751, São Paulo, SP', 'M', '30000', '33344555587', '5');
+insert into funcionario(primeiro_nome, nome_meio, ultimo_nome, cpf, data_nascimento, endereco, sexo, salario, cpf_supervisor, numero_departamento) 
+values('Fernando', 'T', 'Wong', '33344555587', '1955-12-08', 'Rua da Lapa, 34, São Paulo, SP', 'M', '40000', '88866555576', '5');
+insert into funcionario(primeiro_nome, nome_meio, ultimo_nome, cpf, data_nascimento, endereco, sexo, salario, cpf_supervisor, numero_departamento) 
+values('Alice', 'J', 'Zelaya', '99988777767', '1968-01-19', 'Rua Souza Lima, 35, Curitiba, PR', 'F', '25000', '98765432168', '4');
+insert into funcionario(primeiro_nome, nome_meio, ultimo_nome, cpf, data_nascimento, endereco, sexo, salario, cpf_supervisor, numero_departamento) 
+values('Jennifer','S','Souza','98765432168','1941-06-20','Av. Arthur de Lima, 35, Santo André, SP','F','43000','88866555576','4');
+insert into funcionario(primeiro_nome, nome_meio, ultimo_nome, cpf, data_nascimento, endereco, sexo, salario, cpf_supervisor, numero_departamento) 
+values('Ronaldo','K','Lima','66688444476','1962-09-15','Rua Rebouças, 65, Piraciba,, SP','M','38000','33344555587','5');
+insert into funcionario(primeiro_nome, nome_meio, ultimo_nome, cpf, data_nascimento, endereco, sexo, salario, cpf_supervisor, numero_departamento) 
+values('Joice','A','Leite','45345345376','1972-07-31','Av. Lucas Obes, 74, São Paulo, SP','F','25000','33344555587','5');
+insert into funcionario(primeiro_nome, nome_meio, ultimo_nome, cpf, data_nascimento, endereco, sexo, salario, cpf_supervisor, numero_departamento) 
+values('André','V','Pereira','98798798733','1969-03-29','Rua Timbira, 35, São Paulo, SP','M','25000','98765432168','4');
+insert into funcionario(primeiro_nome, nome_meio, ultimo_nome, cpf, data_nascimento, endereco, sexo, salario, cpf_supervisor, numero_departamento) 
+values('Jorge','E','Brito','88866555576','1937-11-10','Rua do Horto, 35, São Paulo, SP','M','55000','','1');
+
+insert into departamento(nome_departamento, numero_departamento, cpf_gerente, data_inicio_gerente)
+values('Pesquisa','5','33344555587','1988-05-22');
+insert into departamento(nome_departamento, numero_departamento , cpf_gerente, data_inicio_gerente)
+values('Administração','4','98765432168','1995-01-01');
+insert into departamento(nome_departamento, numero_departamento , cpf_gerente, data_inicio_gerente)
+values('Matriz','1','88866555576','1981-06-19');
+
+insert into localizacoes_departamento(numero_departamento, "local")
+values('1', 'São Paulo');
+insert into localizacoes_departamento(numero_departamento, "local")
+values('4', 'Mauá');
+insert into localizacoes_departamento(numero_departamento, "local")
+values('5', 'Santo André');
+insert into localizacoes_departamento(numero_departamento, "local")
+values('5', 'Itu');
+insert into localizacoes_departamento(numero_departamento, "local")
+values('5', 'São Paulo');
+
+insert into projeto(nome_projeto, numero_projeto, local_projeto, numero_departamento)
+values('ProdutoX','1','Santo André','5');
+insert into projeto(nome_projeto, numero_projeto, local_projeto, numero_departamento)
+values('ProdutoY','2','Itu','5');
+insert into projeto(nome_projeto, numero_projeto, local_projeto, numero_departamento)
+values('ProdutoZ','3','São Paulo','5');
+insert into projeto(nome_projeto, numero_projeto, local_projeto, numero_departamento)
+values('Informatização','10','Mauá','4');
+insert into projeto(nome_projeto, numero_projeto, local_projeto, numero_departamento)
+values('Reorganização','20','São Paulo','1');
+insert into projeto(nome_projeto, numero_projeto, local_projeto, numero_departamento)
+values('Novosbenefícios','30','Mauá','4');
+
+insert into dependente(cpf_funcionario, nome_dependente, sexo, data_nascimento, parentesco)
+values('33344555587','Alicia','F','1986-04-05','Filha');
+insert into dependente(cpf_funcionario, nome_dependente, sexo, data_nascimento, parentesco)
+values('33344555587','Tiago','M','1983-10-25','Filho');
+insert into dependente(cpf_funcionario, nome_dependente, sexo, data_nascimento, parentesco)
+values('33344555587','Janaína','F','1958-05-03','Esposa');
+insert into dependente(cpf_funcionario, nome_dependente, sexo, data_nascimento, parentesco)
+values('98765432168','Antonio','M','1942-02-28','Marido');
+insert into dependente(cpf_funcionario, nome_dependente, sexo, data_nascimento, parentesco)
+values('12345678966','Michael','M','1988-01-04','Filho');
+insert into dependente(cpf_funcionario, nome_dependente, sexo, data_nascimento, parentesco)
+values('12345678966','Alicia','F','1988-12-30','Filha');
+insert into dependente(cpf_funcionario, nome_dependente, sexo, data_nascimento, parentesco)
+values('12345678966','Elizabeth','F','1967-05-05','Esposa');
+
+insert into trabalha_em(cpf_funcionario, numero_projeto, horas)
+values('12345678966', '1', '32.5');
+insert into trabalha_em(cpf_funcionario, numero_projeto, horas)
+values('12345678966', '2', '7.5');
+insert into trabalha_em(cpf_funcionario, numero_projeto, horas)
+values('66688444476', '3', '40.0');
+insert into trabalha_em(cpf_funcionario, numero_projeto, horas)
+values('45345345376', '1', '20.0');
+insert into trabalha_em(cpf_funcionario, numero_projeto, horas)
+values('45345345376', '2', '20.0');
+insert into trabalha_em(cpf_funcionario, numero_projeto, horas)
+values('33344555587', '2', '10.0');
+insert into trabalha_em(cpf_funcionario, numero_projeto, horas)
+values('33344555587', '3', '10.0');
+insert into trabalha_em(cpf_funcionario, numero_projeto, horas)
+values('33344555587', '10', '10.0');
+insert into trabalha_em(cpf_funcionario, numero_projeto, horas)
+values('33344555587', '20', '10.0');
+insert into trabalha_em(cpf_funcionario, numero_projeto, horas)
+values('99988777767', '30', '30.0');
+insert into trabalha_em(cpf_funcionario, numero_projeto, horas)
+values('99988777767', '10', '10.0');
+insert into trabalha_em(cpf_funcionario, numero_projeto, horas)
+values('98798798733', '10', '35.0');
+insert into trabalha_em(cpf_funcionario, numero_projeto, horas)
+values('98798798733', '30', '5.0');
+insert into trabalha_em(cpf_funcionario, numero_projeto, horas)
+values('98765432168', '30', '20.0');
+insert into trabalha_em(cpf_funcionario, numero_projeto, horas)
+values('98765432168', '20', '15.0');
+insert into trabalha_em(cpf_funcionario, numero_projeto, horas)
+values('88866555576', '20', null);
