@@ -1,4 +1,6 @@
 
+create database uvv;
+use database uvv;
 
 CREATE TABLE funcionario (
 /*Esse bloco cria a tabela funcionario, suas colunas e chaves.*/
