@@ -1,3 +1,22 @@
+create role caio with
+	SUPERUSER
+	CREATEDB
+	CREATEROLE
+	INHERIT
+	LOGIN
+	REPLICATION
+	BYPASSRLS;
+
+create schema elmasri
+	authorization caio;
+
+create database uvv
+with 
+owner = caio;
+
+set search_path to elmasri,"$user",public;
+
+
 CREATE TABLE funcionario (
 /*Esse bloco cria a tabela funcionario, suas colunas e chaves.*/
 
