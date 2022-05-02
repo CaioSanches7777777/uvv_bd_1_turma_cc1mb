@@ -1,24 +1,26 @@
--- 1)O comando a baixo seleciona a mÈdia dos sal·rios respectivamente dos departamentos 1, 4 e 5.
+use uvv;
+
+-- 1)O comando a baixo seleciona a m√©dia dos sal√°rios respectivamente dos departamentos 1, 4 e 5.
 select avg(salario) as media_salario_dep1_4_e_5
 from funcionario
 where numero_departamento=1 or numero_departamento=4 or numero_departamento=5
 group by numero_departamento;
 
 
--- 2)Os comandos a baixo selecionam as mÈdias dos salarios respectivamente de homens e de mulheres.
+-- 2)Os comandos a baixo selecionam as m√©dias dos salarios respectivamente de homens e de mulheres.
 select avg(salario) as media_salario_M_e_F
 from funcionario 
 where sexo='M' or sexo='F'
 group by sexo;
 
 
--- 3)O comando a baixo seleciona os nomes dos departamentos incluindo as informaÁıes sobre os funcionarios desses departamentos solicitadas no enunciado da quest„o 3.
+-- 3)O comando a baixo seleciona os nomes dos departamentos incluindo as informa√ß√µes sobre os funcionarios desses departamentos solicitadas no enunciado da quest√£o 3.
 select departamento.nome_departamento, funcionario.primeiro_nome, funcionario.nome_meio, funcionario.ultimo_nome, funcionario.data_nascimento, year(curdate()) - year(data_nascimento) as idade, funcionario.salario
 from departamento 
 inner join funcionario on departamento.numero_departamento=funcionario.numero_departamento;
 
 
--- 4)O comando a baixo seleciona as informaÁıes sobre os funcionarios solicitadas no enunciado da quest„o 4.
+-- 4)O comando a baixo seleciona as informa√ß√µes sobre os funcionarios solicitadas no enunciado da quest√£o 4.
 select primeiro_nome, nome_meio, ultimo_nome, data_nascimento, year(curdate()) - year(data_nascimento) as idade, salario as salario_atual, (salario+((salario div 10)*2)) as salario_com_reajuste
 from funcionario
 where salario<35000
@@ -28,7 +30,7 @@ from funcionario
 where salario>35000;
 
 
--- 5)O comando a baixo seleciona as informaÁıes sobre os funcionarios solicitadas no enunciado da quest„o 5.
+-- 5)O comando a baixo seleciona as informa√ß√µes sobre os funcionarios solicitadas no enunciado da quest√£o 5.
 
 
 
