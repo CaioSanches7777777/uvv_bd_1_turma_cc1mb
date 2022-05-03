@@ -10,10 +10,14 @@ group by numero_departamento;
 
 -- 2)Os comandos a baixo selecionam as médias dos salarios respectivamente de homens e de mulheres.
 
-select avg(salario) as media_salario_M_e_F
+select avg(salario) as media_salario_M, sexo
 from funcionario 
-where sexo='M' or sexo='F'
-group by sexo;
+where sexo='M'
+union
+select avg(salario) as media_salario_F, sexo
+from funcionario 
+where sexo='F';
+
 
 
 -- 3)O comando a baixo seleciona os nomes dos departamentos incluindo as informações sobre os funcionarios desses departamentos solicitadas no enunciado da questão 3.
