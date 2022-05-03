@@ -37,6 +37,7 @@ inner join funcionario on departamento.numero_departamento=funcionario.numero_de
 where cpf_gerente = cpf
 union
 select departamento.nome_departamento, funcionario.primeiro_nome as primeiro_nome, funcionario.nome_meio as nome_meio, funcionario.ultimo_nome as ultimo_nome
+from departamento
 inner join funcionario on departamento.numero_departamento=funcionario.numero_departamento
 where not cpf_gerente = cpf;
 
