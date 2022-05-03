@@ -36,6 +36,22 @@ where salario>35000;
 
 -- 5)O comando a baixo seleciona as informações sobre os funcionarios solicitadas no enunciado da questão 5.
 
+select * 
+from (select departamento.nome_departamento, funcionario.primeiro_nome as primeiro_nome, funcionario.nome_meio as nome_meio, funcionario.ultimo_nome as ultimo_nome
+from departamento
+inner join funcionario on departamento.numero_departamento=funcionario.numero_departamento
+where cpf_gerente = cpf
+order by nome_departamento asc) as gerente
+union 
+select *
+from (select departamento.nome_departamento, funcionario.primeiro_nome as primeiro_nome, funcionario.nome_meio as nome_meio, funcionario.ultimo_nome as ultimo_nome
+from departamento
+inner join funcionario on departamento.numero_departamento=funcionario.numero_departamento
+where not cpf_gerente = cpf
+order by salario desc) as funcionario;
+
+
+/*ESBOÇO ERRADO
 select *
 from (select d.nome_departamento, f.primeiro_nome as primeiro_nome, f.nome_meio as nome_meio, f.ultimo_nome as ultimo_nome
 from funcionario as f, departamento as d
@@ -47,6 +63,7 @@ from (select d2.nome_departamento, f2.primeiro_nome as primeiro_nome_funcionario
 from funcionario as f2, departamento as d2
 where not f2.cpf = d2.cpf_gerente
 order by salario desc) as funcionarios;
+*/
 
 
 /* ESBOÇO VÁLIDO DA PARTE DE GERENTES DA QUESTÃO 5
@@ -69,7 +86,12 @@ order by salario desc;
 
 
 -- 6)O comando a baixo seleciona as informações solicitaas no enunciado da questão 6 sobre os gerentes e os funcionarios em seus respectivos departamentos.
-
+ 
+/*RASCUNHO DA QUESTÃO 6
+select d.nome_departamento, f.primeiro_nome as primeiro_nome_funcionario, f.nome_meio as nome_meio_funcionario, f.ultimo_nome as ultimo_nome_funcionario, dts.nome_dependente, f.nome_meio as nome_meio_dependente, f.ultimo_nome as ultimo_nome_dependente, dts.sexo, year(curdate()) - year(dts.data_nascimento) as idade_dependente
+from funcionario as f, departamento as d, dependente as dts
+where dts.cpf_funcionario = f.cpf;
+*/
 
 
 
