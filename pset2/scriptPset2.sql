@@ -31,15 +31,17 @@ where salario>35000;
 
 
 -- 5)O comando a baixo seleciona as informações sobre os funcionarios solicitadas no enunciado da questão 5.
-select departamento.nome_departamento, funcionario.primeiro_nome as primeiro_nome_gerente, funcionario.nome_meio as nome_meio_gerente, funcionario.ultimo_nome as ultimo_nome_gerente
+select departamento.nome_departamento, funcionario.primeiro_nome as primeiro_nome, funcionario.nome_meio as nome_meio, funcionario.ultimo_nome as ultimo_nome
 from departamento
 inner join funcionario on departamento.numero_departamento=funcionario.numero_departamento
 where cpf_gerente = cpf
+order by nome_departamento asc
 union
 select departamento.nome_departamento, funcionario.primeiro_nome as primeiro_nome, funcionario.nome_meio as nome_meio, funcionario.ultimo_nome as ultimo_nome
 from departamento
 inner join funcionario on departamento.numero_departamento=funcionario.numero_departamento
-where not cpf_gerente = cpf;
+where not cpf_gerente = cpf
+order by salario desc;
 
 -- 6)
 
