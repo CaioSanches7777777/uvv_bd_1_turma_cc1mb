@@ -60,8 +60,9 @@ union
 select *
 from (select d2.nome_departamento, f2.primeiro_nome as primeiro_nome_funcionario, f2.nome_meio as nome_meio_funcionario, f2.ultimo_nome as ultimo_nome_funcionario
 from funcionario as f2, departamento as d2
-where not f2.cpf = d2.cpf_gerente
+where f2.numero_departamento=d2.numero_departamento and not f2.cpf = d2.cpf_gerente
 order by salario desc) as funcionarios;
+
 
 
 
