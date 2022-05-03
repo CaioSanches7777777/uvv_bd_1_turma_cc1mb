@@ -48,6 +48,15 @@ from funcionario as f2, departamento as d2
 where not f2.cpf = d2.cpf_gerente
 order by salario desc) as funcionarios;
 
+
+/* ESBOÇO VÁLIDO DA PARTE DE GERENTES DA QUESTÃO 5
+select departamento.nome_departamento, funcionario.primeiro_nome as primeiro_nome, funcionario.nome_meio as nome_meio, funcionario.ultimo_nome as ultimo_nome
+from departamento
+inner join funcionario on departamento.numero_departamento=funcionario.numero_departamento
+where cpf_gerente = cpf
+order by nome_departamento asc;
+*/
+
 /* ESBOÇO VÁLIDO DA PARTE DE NÃO GERENTES DA QUESTÃO 5
 select departamento.nome_departamento, funcionario.primeiro_nome as primeiro_nome, funcionario.nome_meio as nome_meio, funcionario.ultimo_nome as ultimo_nome
 from departamento
