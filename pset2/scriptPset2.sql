@@ -52,7 +52,7 @@ order by nome_departamento asc, salario desc;
 -- 6)O comando a baixo seleciona as informações solicitaas no enunciado da questão 6 sobre os gerentes e os funcionarios em seus respectivos departamentos.
 
 select *
-from (select d.nome_departamento, f.primeiro_nome as primeiro_nome_gerente, f.nome_meio as nome_meio_gerente, f.ultimo_nome as ultimo_nome_gerente
+from (select d.nome_departamento, f.primeiro_nome as primeiro_nome, f.nome_meio as nome_meio, f.ultimo_nome as ultimo_nome
 from funcionario as f, departamento as d
 where f.cpf = d.cpf_gerente
 order by nome_departamento asc)as gerentes
