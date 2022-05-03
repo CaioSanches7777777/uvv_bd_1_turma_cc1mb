@@ -36,23 +36,8 @@ where salario>35000;
 
 -- 5)O comando a baixo seleciona as informações sobre os funcionarios solicitadas no enunciado da questão 5.
 
-select departamento.nome_departamento, funcionario.primeiro_nome as primeiro_nome, funcionario.nome_meio as nome_meio, funcionario.ultimo_nome as ultimo_nome
-from departamento
-inner join funcionario on departamento.numero_departamento=funcionario.numero_departamento
-where cpf_gerente = cpf
-union
-select departamento.nome_departamento, funcionario.primeiro_nome as primeiro_nome, funcionario.nome_meio as nome_meio, funcionario.ultimo_nome as ultimo_nome
-from departamento
-inner join funcionario on departamento.numero_departamento=funcionario.numero_departamento
-where not cpf_gerente = cpf
-order by nome_departamento asc, salario desc;
-
-
-
--- 6)O comando a baixo seleciona as informações solicitaas no enunciado da questão 6 sobre os gerentes e os funcionarios em seus respectivos departamentos.
-
 select *
-from (select d.nome_departamento, f.primeiro_nome as primeiro_nome, f.nome_meio as nome_meio, f.ultimo_nome as ultimo_nome
+from (select d.nome_departamento, f.primeiro_nome as primeiro_nome_gerente, f.nome_meio as nome_meio_gerente, f.ultimo_nome as ultimo_nome_gerente
 from funcionario as f, departamento as d
 where f.cpf = d.cpf_gerente
 order by nome_departamento asc)as gerentes
@@ -60,8 +45,14 @@ union
 select *
 from (select d2.nome_departamento, f2.primeiro_nome as primeiro_nome_funcionario, f2.nome_meio as nome_meio_funcionario, f2.ultimo_nome as ultimo_nome_funcionario
 from funcionario as f2, departamento as d2
-where f2.numero_departamento=d2.numero_departamento and not f2.cpf = d2.cpf_gerente
+where not f2.cpf = d2.cpf_gerente
 order by salario desc) as funcionarios;
+
+
+
+-- 6)O comando a baixo seleciona as informações solicitaas no enunciado da questão 6 sobre os gerentes e os funcionarios em seus respectivos departamentos.
+
+
 
 
 
