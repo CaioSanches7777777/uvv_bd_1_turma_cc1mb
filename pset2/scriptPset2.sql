@@ -41,18 +41,19 @@ where salario>35000;
 -- 5)O comando a baixo seleciona as informações sobre os funcionarios solicitadas no enunciado da questão 5.
 
 select * 
-from (select departamento.nome_departamento, concat(f.primeiro_nome, " ",f.nome_meio, ". ",f.ultimo_nome) as nome_completo_funcionario,
+from (select concat("Gerente ", departamento.nome_departamento), concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
 from departamento
 inner join funcionario on departamento.numero_departamento=funcionario.numero_departamento
 where cpf_gerente = cpf
 order by nome_departamento asc) as gerente
 union 
 select *
-from (select departamento.nome_departamento, concat(f.primeiro_nome, " ",f.nome_meio, ". ",f.ultimo_nome) as nome_completo_funcionario,
+from (select departamento.nome_departamento, concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
 from departamento
 inner join funcionario on departamento.numero_departamento=funcionario.numero_departamento
 where not cpf_gerente = cpf
 order by salario desc) as funcionario;
+
 
 
 /*ESBOÇO ERRADO
