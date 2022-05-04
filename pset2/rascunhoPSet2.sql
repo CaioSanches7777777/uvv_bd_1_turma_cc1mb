@@ -31,13 +31,11 @@ where d.numero_departamento=f.numero_departamento;
 
 
 /* NÃO USAR, APENAS ESTUDAR (ADAPTAÇÃO DO CODIGO DO ABRANTES PARA QUESTÃO 7)
-select d.nome_departamento
-     , concat(f.primeiro_nome, " ", f.nome_meio, " ", f.ultimo_nome) as nome 
+select d.nome_departamento, concat(f.primeiro_nome, " ", f.nome_meio, " ", f.ultimo_nome) as nome, f.salario
 from funcionario as f
 inner join departamento d on (d.numero_departamento = f.numero_departamento)
 left join dependente dep on (dep.cpf_funcionario = f.cpf)
-where dep.nome_dependente is null
-;
+where dep.nome_dependente is null;
 */
 
 
