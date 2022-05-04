@@ -42,23 +42,6 @@ where dep.nome_dependente is null;
 
 
 
-
-
-
-/* rascunho questão 6  assessado pela view "select * from relatorio_6;" 
-create view relatorio_6 as
-select *
-from (select d.nome_departamento, f.primeiro_nome as primeiro_nome_funcionario, f.nome_meio as nome_meio_funcionario, f.ultimo_nome as ultimo_nome_funcionario, dts.nome_dependente, f.nome_meio as nome_meio_dependente, f.ultimo_nome as ultimo_nome_dependente, dts.sexo, year(curdate()) - year(dts.data_nascimento) as idade_dependente
-from funcionario as f, departamento as d, dependente as dts
-where dts.cpf_funcionario = f.cpf and d.numero_departamento = f.numero_departamento) as formulario;
-*/
-
-
-
-
-
-
-
 /* rascunho questão 6 */
 select *
 from (select d.nome_departamento, concat(f.primeiro_nome, " ",f.nome_meio, ". ",f.ultimo_nome) as nome_completo_funcionario, concat(dts.nome_dependente, " ",f.nome_meio, ". ",f.ultimo_nome) as nome_completo_dependente, year(curdate()) - year(dts.data_nascimento) as idade_dependente,
@@ -72,6 +55,17 @@ where dts.cpf_funcionario = f.cpf and d.numero_departamento = f.numero_departame
 
 
 
+
+--8)
+
+select departamento.nome_departamento
+, concat('(Nº', trabalha_em.numero_projeto, ')', projeto.nome_projeto) as numero_e_nome_projeto
+, concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
+, trabalha_em.horas
+from (((funcionario 
+inner join departamento on (departamento.numero_departamento=funcionario.numero_departamento))
+left join projeto on (funcionario.numero_departamento=projeto.numero_departamento))
+left join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto));
 
 
 
