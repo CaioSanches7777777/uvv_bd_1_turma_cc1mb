@@ -98,6 +98,16 @@ where dependente.nome_dependente is null;
 
 -- 8)
 
+/* ESBOÇO SCRIPT 8
+select departamento.nome_departamento
+, concat('(Nº', trabalha_em.numero_projeto, ')', projeto.nome_projeto) as numero_e_nome_projeto
+, concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
+, trabalha_em.horas
+from (((funcionario 
+inner join departamento on (departamento.numero_departamento=funcionario.numero_departamento))
+left join projeto on (funcionario.numero_departamento=projeto.numero_departamento))
+left join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto));
+*/
 
 
 
