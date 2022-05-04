@@ -1,4 +1,17 @@
 
+/* rascunho de "create view" assessado com o comando "select * from relatorio_1;"
+create view relatorio_1 as
+select numero_departamento, avg(salario) as media_salario_dep
+from funcionario
+where numero_departamento=1 or numero_departamento=4 or numero_departamento=5
+group by numero_departamento;
+*/
+
+
+
+
+
+
 /* rascunho questão 6 */
 select *
 from (select d.nome_departamento, f.primeiro_nome as primeiro_nome_funcionario, f.nome_meio as nome_meio_funcionario, f.ultimo_nome as ultimo_nome_funcionario, dts.nome_dependente, f.nome_meio as nome_meio_dependente, f.ultimo_nome as ultimo_nome_dependente, dts.sexo, year(curdate()) - year(dts.data_nascimento) as idade_dependente
