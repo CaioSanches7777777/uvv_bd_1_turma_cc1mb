@@ -32,5 +32,5 @@ from (select d.nome_departamento, f.primeiro_nome as primeiro_nome_funcionario, 
 from funcionario as f, departamento as d, dependente as dts
 where dts.cpf_funcionario = f.cpf and d.numero_departamento = f.numero_departamento) as formulario
 case 
-when sexo = 'M' then sexo = 'Masculino'
+when sexo = 'M' then 'Masculino'
 end;
