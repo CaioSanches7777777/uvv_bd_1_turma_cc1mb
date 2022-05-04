@@ -1,3 +1,11 @@
+/* AJUDA E REFERÊNCIAS
+https://www.w3schools.com/sql/func_mysql_concat.asp
+https://www.w3schools.com/sql/sql_ref_case.asp
+https://www.w3schools.com/sql/func_mysql_replace.asp
+*/
+
+
+
 
 /* rascunho de "create view" assessado com o comando "select * from relatorio_1;"
 create view relatorio_1 as
