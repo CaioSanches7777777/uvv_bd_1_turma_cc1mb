@@ -29,11 +29,11 @@ inner join funcionario on departamento.numero_departamento=funcionario.numero_de
 
 -- 4)O comando a baixo seleciona as informações sobre os funcionarios solicitadas no enunciado da questão 4.
 
-select primeiro_nome, nome_meio, ultimo_nome, data_nascimento, year(curdate()) - year(data_nascimento) as idade, salario as salario_atual, (salario+((salario div 10)*2)) as salario_com_reajuste
+select concat(primeiro_nome, " ",nome_meio, ". ",ultimo_nome) as nome_completo_funcionario, year(curdate()) - year(data_nascimento) as idade, salario as salario_atual, (salario+((salario div 10)*2)) as salario_com_reajuste
 from funcionario
 where salario<35000
 union 
-select primeiro_nome, nome_meio, ultimo_nome, data_nascimento, year(curdate()) - year(data_nascimento) as idade, salario as salario_atual, (salario+((salario div 100)*15)) as salario_com_reajuste
+select concat(primeiro_nome, " ",nome_meio, ". ",ultimo_nome) data_nascimento, year(curdate()) - year(data_nascimento) as idade, salario as salario_atual, (salario+((salario div 100)*15)) as salario_com_reajuste
 from funcionario
 where salario>35000;
 
