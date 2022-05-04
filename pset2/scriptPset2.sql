@@ -55,22 +55,6 @@ where not cpf_gerente = cpf
 order by salario desc) as funcionario;
 
 
-
-/*ESBOÇO ERRADO
-select *
-from (select d.nome_departamento, f.primeiro_nome as primeiro_nome, f.nome_meio as nome_meio, f.ultimo_nome as ultimo_nome
-from funcionario as f, departamento as d
-where f.cpf = d.cpf_gerente
-order by nome_departamento asc)as gerentes
-union 
-select *
-from (select d2.nome_departamento, f2.primeiro_nome as primeiro_nome_funcionario, f2.nome_meio as nome_meio_funcionario, f2.ultimo_nome as ultimo_nome_funcionario
-from funcionario as f2, departamento as d2
-where not f2.cpf = d2.cpf_gerente
-order by salario desc) as funcionarios;
-*/
-
-
 /* ESBOÇO VÁLIDO DA PARTE DE GERENTES DA QUESTÃO 5
 select departamento.nome_departamento, funcionario.primeiro_nome as primeiro_nome, funcionario.nome_meio as nome_meio, funcionario.ultimo_nome as ultimo_nome
 from departamento
@@ -90,7 +74,7 @@ order by salario desc;
 
 
 
--- 6)O comando a baixo seleciona as informações solicitaas no enunciado da questão 6 sobre os gerentes e os funcionarios em seus respectivos departamentos.
+-- 6)O comando a baixo seleciona as informações solicitaas no enunciado da questão 6 sobre e os funcionarios em seus respectivos dependentes.
  
 select *
 from (select d.nome_departamento, concat(f.primeiro_nome, " ",f.nome_meio, ". ",f.ultimo_nome) as nome_completo_funcionario, concat(dts.nome_dependente, " ",f.nome_meio, ". ",f.ultimo_nome) as nome_completo_dependente, year(curdate()) - year(dts.data_nascimento) as idade_dependente,
@@ -102,9 +86,13 @@ from funcionario as f, departamento as d, dependente as dts
 where dts.cpf_funcionario = f.cpf and d.numero_departamento = f.numero_departamento) as formulario;
 
 
--- 7)
+-- 7)O comando a baixo seleciona as informações solicitaas no enunciado da questão 7 sobre e os funcionarios sem dependentes.
 
-
+select departamento.nome_departamento, concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",ultimo_nome) as nome_completo_funcionario, funcionario.salario
+from funcionario
+inner join departamento on (departamento.numero_departamento = funcionario.numero_departamento)
+left join dependente on (dependente.cpf_funcionario = funcionario.cpf)
+where dependente.nome_dependente is null;
 
 
 
