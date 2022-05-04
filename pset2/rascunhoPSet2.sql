@@ -15,13 +15,13 @@ where numero_departamento=1 or numero_departamento=4 or numero_departamento=5
 group by numero_departamento;
 */
 
-/* rascunho questão 6  assessado pela view "select * from relatorio_6;" */
+/* rascunho questão 6  assessado pela view "select * from relatorio_6;" 
 create view relatorio_6 as
 select *
 from (select d.nome_departamento, f.primeiro_nome as primeiro_nome_funcionario, f.nome_meio as nome_meio_funcionario, f.ultimo_nome as ultimo_nome_funcionario, dts.nome_dependente, f.nome_meio as nome_meio_dependente, f.ultimo_nome as ultimo_nome_dependente, dts.sexo, year(curdate()) - year(dts.data_nascimento) as idade_dependente
 from funcionario as f, departamento as d, dependente as dts
 where dts.cpf_funcionario = f.cpf and d.numero_departamento = f.numero_departamento) as formulario;
-
+*/
 
 
 
