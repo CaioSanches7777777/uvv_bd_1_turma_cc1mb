@@ -28,7 +28,7 @@ where dts.cpf_funcionario = f.cpf and d.numero_departamento = f.numero_departame
 
 /* rascunho questão 6 */
 select *
-from (select d.nome_departamento, concat(f.primeiro_nome, " ",f.nome_meio, " ",f.ultimo_nome) as nome_completo_funcionario, concat(dts.nome_dependente, f.nome_meio, f.ultimo_nome) as nome_completo_dependente, dts.sexo, year(curdate()) - year(dts.data_nascimento) as idade_dependente,
+from (select d.nome_departamento, concat(f.primeiro_nome, " ",f.nome_meio, " ",f.ultimo_nome) as nome_completo_funcionario, concat(dts.nome_dependente, f.nome_meio, f.ultimo_nome) as nome_completo_dependente, year(curdate()) - year(dts.data_nascimento) as idade_dependente,
 case dts.sexo
       when 'M' then 'Masculino'
       when 'F' then 'Feminino'
