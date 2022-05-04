@@ -34,3 +34,41 @@ where dts.cpf_funcionario = f.cpf and d.numero_departamento = f.numero_departame
 case 
 when sexo = 'M' then 'Masculino'
 end;
+
+
+
+
+
+
+
+
+/*
+select *
+from (
+
+
+select d.nome_departamento
+     , concat(f.primeiro_nome, " ", f.nome_meio, " ", f.ultimo_nome) as nome
+     , dep.nome_dependente
+     , CASE dep.sexo
+         when 'M' then 'Masculino'
+         when 'F' then 'Feminino'
+         else ''
+       end sexo_dependente
+from funcionario as f
+inner join departamento d on (d.numero_departamento = f.numero_departamento)
+left join dependente dep on (dep.cpf_funcionario = f.cpf)
+where dep.nome_dependente is null
+;
+
+, dependente as dts
+where dts.cpf_funcionario = f.cpf and d.numero_departamento = f.numero_departamento
+
+
+
+
+) as formulario
+case 
+when sexo = 'M' then 'Masculino'
+end;
+*/
