@@ -22,7 +22,7 @@ where sexo='F';
 
 -- 3)O comando a baixo seleciona os nomes dos departamentos incluindo as informações sobre os funcionarios desses departamentos solicitadas no enunciado da questão 3.
 
-select departamento.nome_departamento, funcionario.primeiro_nome, funcionario.nome_meio, funcionario.ultimo_nome, funcionario.data_nascimento, year(curdate()) - year(data_nascimento) as idade, funcionario.salario
+select departamento.nome_departamento, concat(primeiro_nome, " ",nome_meio, ". ",ultimo_nome) as nome_completo_funcionario, funcionario.data_nascimento, year(curdate()) - year(data_nascimento) as idade, funcionario.salario
 from departamento 
 inner join funcionario on departamento.numero_departamento=funcionario.numero_departamento;
 
