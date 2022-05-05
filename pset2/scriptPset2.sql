@@ -98,6 +98,7 @@ where dependente.nome_dependente is null;
 
 -- 8)O comando a baixo seleciona as informações solicitaas no enunciado da questão 8 sobre os projetos de cada departamento e numero de horas e os funcionarios associados a cada projeto.
 
+create view relatorio_8 as
 select departamento.nome_departamento
 , concat('(Nº', trabalha_em.numero_projeto, ')', projeto.nome_projeto) as numero_e_nome_projeto
 , concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
@@ -108,6 +109,8 @@ left join projeto on (funcionario.numero_departamento=projeto.numero_departament
 left join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
 where funcionario.cpf = trabalha_em.cpf_funcionario
 order by trabalha_em.numero_projeto;
+--favor ignorar o erro (que ocorre quando a view relatorio_8 já foi criada) acima, essa view será usada na questão 9  
+select * from relatorio_8;
 
 
 
