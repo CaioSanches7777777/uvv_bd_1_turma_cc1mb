@@ -72,6 +72,63 @@ order by trabalha_em.numero_projeto;
 
 
 
+
+select nome_departamento
+, numero_e_nome_projeto
+, SUM(horas)
+from relatorio_8
+where numero_e_nome_projeto = '(Nº1)ProdutoX'
+union
+select nome_departamento
+, numero_e_nome_projeto
+, SUM(horas)
+from relatorio_8
+where numero_e_nome_projeto = '(Nº2)ProdutoY'
+union
+select nome_departamento
+, numero_e_nome_projeto
+, SUM(horas)
+from relatorio_8
+where numero_e_nome_projeto = '(Nº3)ProdutoZ'
+union
+select nome_departamento
+, numero_e_nome_projeto
+, SUM(horas)
+from relatorio_8
+where numero_e_nome_projeto = '(Nº10)Informatização'
+union
+select nome_departamento
+, numero_e_nome_projeto
+, SUM(horas)
+from relatorio_8
+where numero_e_nome_projeto = '(Nº20)Reorganização'
+union
+select nome_departamento
+, numero_e_nome_projeto
+, SUM(horas)
+from relatorio_8
+where numero_e_nome_projeto = '(Nº30)Novosbenefícios';
+
+
+
+
+
+
+
+--9)
+select departamento.nome_departamento
+, trabalha_em.numero_projeto
+, projeto.nome_projeto
+, sum(trabalha_em.horas)
+from (projeto
+inner join departamento on (projeto.numero_departamento=departamento.numero_departamento)
+inner join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
+where trabalha_em.numero_projeto = projeto.numero_projeto and projeto.numero_projeto = projeto.numero_projeto;
+
+
+
+
+
 /*
 select *
 from (
