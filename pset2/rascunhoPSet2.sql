@@ -65,7 +65,9 @@ select departamento.nome_departamento
 from (((funcionario 
 inner join departamento on (departamento.numero_departamento=funcionario.numero_departamento))
 left join projeto on (funcionario.numero_departamento=projeto.numero_departamento))
-left join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto));
+left join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
+where funcionario.cpf = trabalha_em.cpf_funcionario
+order by trabalha_em.numero_projeto;
 
 
 
