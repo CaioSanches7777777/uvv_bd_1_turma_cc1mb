@@ -118,7 +118,50 @@ select * from relatorio_8;
 
 -- 9)
 
-/*ESBOÇO 9
+
+/*ESBOÇO VÁLIDO DA QUESTÃO 9
+
+select nome_departamento
+, numero_e_nome_projeto
+, SUM(horas)
+from relatorio_8
+where numero_e_nome_projeto = '(Nº1)ProdutoX'
+union
+select nome_departamento
+, numero_e_nome_projeto
+, SUM(horas)
+from relatorio_8
+where numero_e_nome_projeto = '(Nº2)ProdutoY'
+union
+select nome_departamento
+, numero_e_nome_projeto
+, SUM(horas)
+from relatorio_8
+where numero_e_nome_projeto = '(Nº3)ProdutoZ'
+union
+select nome_departamento
+, numero_e_nome_projeto
+, SUM(horas)
+from relatorio_8
+where numero_e_nome_projeto = '(Nº10)Informatização'
+union
+select nome_departamento
+, numero_e_nome_projeto
+, SUM(horas)
+from relatorio_8
+where numero_e_nome_projeto = '(Nº20)Reorganização'
+union
+select nome_departamento
+, numero_e_nome_projeto
+, SUM(horas)
+from relatorio_8
+where numero_e_nome_projeto = '(Nº30)Novosbenefícios';
+
+*/
+
+
+
+/*RACUNHO INCOMPLETO DA 9
 select trabalha_em.horas
 , projeto.nome_projeto
 , departamento.nome_departamento
