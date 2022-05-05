@@ -115,6 +115,16 @@ order by trabalha_em.numero_projeto;
 
 -- 9)
 
+/*ESBOÇO 9
+select trabalha_em.horas
+, projeto.nome_projeto
+, departamento.nome_departamento
+from (projeto
+inner join departamento on (departamento.numero_departamento=projeto.numero_departamento)
+inner join trabalha_em on (trabalha_em.numero_projeto=projeto.numero_projeto))
+where projeto.numero_projeto = trabalha_em.numero_projeto
+and projeto.numero_departamento=departamento.numero_departamento;
+*/
 
 
 
