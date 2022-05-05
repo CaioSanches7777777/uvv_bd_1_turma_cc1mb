@@ -122,42 +122,30 @@ select * from relatorio_8;
 /*ESBOÇO VÁLIDO DA QUESTÃO 9
 
 CREATE VIEW relatorio_9 as
-select nome_departamento
-, numero_e_nome_projeto
-, SUM(horas)
+select nome_departamento, numero_e_nome_projeto, SUM(horas)
 from relatorio_8
 where numero_e_nome_projeto = '(Nº1)ProdutoX'
 union
-select nome_departamento
-, numero_e_nome_projeto
-, SUM(horas)
+select nome_departamento, numero_e_nome_projeto, SUM(horas)
 from relatorio_8
 where numero_e_nome_projeto = '(Nº2)ProdutoY'
 union
-select nome_departamento
-, numero_e_nome_projeto
-, SUM(horas)
+select nome_departamento, numero_e_nome_projeto, SUM(horas)
 from relatorio_8
 where numero_e_nome_projeto = '(Nº3)ProdutoZ'
 union
-select nome_departamento
-, numero_e_nome_projeto
-, SUM(horas)
+select nome_departamento, numero_e_nome_projeto, SUM(horas)
 from relatorio_8
 where numero_e_nome_projeto = '(Nº10)Informatização'
 union
-select nome_departamento
-, numero_e_nome_projeto
-, SUM(horas)
+select nome_departamento, numero_e_nome_projeto, SUM(horas)
 from relatorio_8
 where numero_e_nome_projeto = '(Nº20)Reorganização'
 union
-select nome_departamento
-, numero_e_nome_projeto
-, SUM(horas)
+select nome_departamento, numero_e_nome_projeto, SUM(horas)
 from relatorio_8
 where numero_e_nome_projeto = '(Nº30)Novosbenefícios';
---favor ignorar o erro (que ocorre quando a view relatorio_9 já foi criada) acima, essa view será usada como abreviação da questão 9  
+/*Favor ignorar o erro (que ocorre quando a view relatorio_9 já foi criada) acima, essa view será usada como abreviação da questão 9*/
 
 select * from relatorio_9;
 */
