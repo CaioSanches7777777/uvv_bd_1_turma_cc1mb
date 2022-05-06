@@ -3,7 +3,7 @@ https://www.w3schools.com/sql/func_mysql_concat.asp
 https://www.w3schools.com/sql/sql_ref_case.asp
 https://www.w3schools.com/sql/func_mysql_replace.asp
 */
-
+-- questão 10 = questão 1
 
 
 
@@ -114,8 +114,7 @@ where numero_e_nome_projeto = '(Nº30)Novosbenefícios';
 
 
 
-
---9)
+/* Rascunho da 9
 select departamento.nome_departamento
 , trabalha_em.numero_projeto
 , projeto.nome_projeto
@@ -124,6 +123,45 @@ from (projeto
 inner join departamento on (projeto.numero_departamento=departamento.numero_departamento)
 inner join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
 where trabalha_em.numero_projeto = projeto.numero_projeto and projeto.numero_projeto = projeto.numero_projeto;
+*/
+
+
+
+--10)
+
+
+select concat(departamento.nome_departamento, ' Nº', funcionario.numero_departamento) as nome_e_numero_departamento, avg(funcionario.salario) as media_salario_dep
+from funcionario, departamento
+where funcionario.numero_departamento=1 or funcionario.numero_departamento=4 or funcionario.numero_departamento=5
+group by funcionario.numero_departamento;
+
+
+
+
+--11)
+
+select concat('(Nº', trabalha_em.numero_projeto, ')', projeto.nome_projeto) as numero_e_nome_projeto
+, concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
+, trabalha_em.horas
+, trabalha_em.horas * 50 as valor_em_horas_trabalhadas
+from (((funcionario 
+inner join departamento on (departamento.numero_departamento=funcionario.numero_departamento))
+left join projeto on (funcionario.numero_departamento=projeto.numero_departamento))
+left join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
+where funcionario.cpf = trabalha_em.cpf_funcionario
+order by trabalha_em.numero_projeto;
+
+
+
+
+
+--12)
+
+
+
+
+
+
 
 
 
