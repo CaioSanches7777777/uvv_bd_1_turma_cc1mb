@@ -2,7 +2,7 @@ use uvv;
 
 -- 1)O comando a baixo seleciona a média dos salários dos funcionarios, respectivamente, dos departamentos 1, 4 e 5.
 
-select numero_departamento, avg(salario) as media_salario_dep
+select numero_departamento, concat('$', avg(salario)) as media_salario_dep
 from funcionario
 where numero_departamento=1 or numero_departamento=4 or numero_departamento=5
 group by numero_departamento;
@@ -10,11 +10,11 @@ group by numero_departamento;
 
 -- 2)Os comandos a baixo selecionam as médias dos salarios respectivamente de homens e de mulheres.
 
-select avg(salario) as media_salario, sexo
+select concat('$', avg(salario)) as media_salario, sexo
 from funcionario 
 where sexo='M'
 union
-select avg(salario) as media_salario, sexo
+select concat('$', avg(salario)) as media_salario, sexo
 from funcionario 
 where sexo='F';
 
@@ -22,18 +22,18 @@ where sexo='F';
 
 -- 3)O comando a baixo seleciona os nomes dos departamentos incluindo as informações sobre os funcionarios desses departamentos solicitadas no enunciado da questão 3.
 
-select departamento.nome_departamento, concat(primeiro_nome, " ",nome_meio, ". ",ultimo_nome) as nome_completo_funcionario, funcionario.data_nascimento, year(curdate()) - year(data_nascimento) as idade, funcionario.salario
+select departamento.nome_departamento, concat(primeiro_nome, " ",nome_meio, ". ",ultimo_nome) as nome_completo_funcionario, funcionario.data_nascimento, year(curdate()) - year(data_nascimento) as idade, concat('$', funcionario.salario) as salario
 from departamento 
 inner join funcionario on departamento.numero_departamento=funcionario.numero_departamento;
 
 
 -- 4)O comando a baixo seleciona as informações sobre os funcionarios solicitadas no enunciado da questão 4.
 
-select concat(primeiro_nome, " ",nome_meio, ". ",ultimo_nome) as nome_completo_funcionario, year(curdate()) - year(data_nascimento) as idade, salario as salario_atual, (salario+((salario div 10)*2)) as salario_com_reajuste
+select concat(primeiro_nome, " ",nome_meio, ". ",ultimo_nome) as nome_completo_funcionario, year(curdate()) - year(data_nascimento) as idade, concat('$', salario) as salario_atual, concat('$', (salario+((salario div 10)*2))) as salario_com_reajuste
 from funcionario
 where salario<35000
 union 
-select concat(primeiro_nome, " ",nome_meio, ". ",ultimo_nome) data_nascimento, year(curdate()) - year(data_nascimento) as idade, salario as salario_atual, (salario+((salario div 100)*15)) as salario_com_reajuste
+select concat(primeiro_nome, " ",nome_meio, ". ",ultimo_nome) data_nascimento, year(curdate()) - year(data_nascimento) as idade, concat('$', salario) as salario_atual, concat('$', (salario+((salario div 100)*15))) as salario_com_reajuste
 from funcionario
 where salario>35000;
 
@@ -88,7 +88,7 @@ where dts.cpf_funcionario = f.cpf and d.numero_departamento = f.numero_departame
 
 -- 7)O comando a baixo seleciona as informações solicitaas no enunciado da questão 7 sobre e os funcionarios sem dependentes.
 
-select departamento.nome_departamento, concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",ultimo_nome) as nome_completo_funcionario, funcionario.salario
+select departamento.nome_departamento, concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",ultimo_nome) as nome_completo_funcionario, concat('$', funcionario.salario) as salario
 from funcionario
 inner join departamento on (departamento.numero_departamento = funcionario.numero_departamento)
 left join dependente on (dependente.cpf_funcionario = funcionario.cpf)
@@ -168,7 +168,7 @@ and projeto.numero_departamento=departamento.numero_departamento;
 
 -- 10)O comando a baixo seleciona a média dos salários dos funcionarios, respectivamente, dos departamentos 1, 4 e 5.
 
-select concat(departamento.nome_departamento, ' Nº', funcionario.numero_departamento) as nome_e_numero_departamento, avg(funcionario.salario) as media_salario_dep
+select concat(departamento.nome_departamento, ' Nº', funcionario.numero_departamento) as nome_e_numero_departamento, concat('$', avg(funcionario.salario)) as media_salario_dep
 from funcionario, departamento
 where funcionario.numero_departamento=1 or funcionario.numero_departamento=4 or funcionario.numero_departamento=5
 group by funcionario.numero_departamento;
@@ -179,7 +179,7 @@ group by funcionario.numero_departamento;
 
 select concat('(Nº', trabalha_em.numero_projeto, ')', projeto.nome_projeto) as numero_e_nome_projeto
 , concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
-, concat(trabalha_em.horas, ' * $50,00 = ', trabalha_em.horas * 50) as valor_em_horas_trabalhadas
+, concat('$', trabalha_em.horas * 50) as valor_em_horas_trabalhadas
 from (((funcionario 
 inner join departamento on (departamento.numero_departamento=funcionario.numero_departamento))
 left join projeto on (funcionario.numero_departamento=projeto.numero_departamento))
