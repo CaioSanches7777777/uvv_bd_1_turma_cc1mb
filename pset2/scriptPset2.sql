@@ -179,8 +179,7 @@ group by funcionario.numero_departamento;
 
 select concat('(Nº', trabalha_em.numero_projeto, ')', projeto.nome_projeto) as numero_e_nome_projeto
 , concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
-, trabalha_em.horas
-, trabalha_em.horas * 50 as valor_em_horas_trabalhadas
+, concat(trabalha_em.horas, ' * $50,00 = ', trabalha_em.horas * 50) as valor_em_horas_trabalhadas
 from (((funcionario 
 inner join departamento on (departamento.numero_departamento=funcionario.numero_departamento))
 left join projeto on (funcionario.numero_departamento=projeto.numero_departamento))
