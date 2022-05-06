@@ -1,6 +1,6 @@
 use uvv;
 
--- 1)O comando a baixo seleciona a média dos salários respectivamente dos departamentos 1, 4 e 5.
+-- 1)O comando a baixo seleciona a média dos salários dos funcionarios, respectivamente, dos departamentos 1, 4 e 5.
 
 select numero_departamento, avg(salario) as media_salario_dep
 from funcionario
@@ -166,9 +166,12 @@ and projeto.numero_departamento=departamento.numero_departamento;
 
 
 
--- 10)
+-- 10)O comando a baixo seleciona a média dos salários dos funcionarios, respectivamente, dos departamentos 1, 4 e 5.
 
-
+select numero_departamento, avg(salario) as media_salario_dep
+from funcionario
+where numero_departamento=1 or numero_departamento=4 or numero_departamento=5
+group by numero_departamento;
 
 
 
