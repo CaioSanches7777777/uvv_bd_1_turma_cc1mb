@@ -168,15 +168,25 @@ and projeto.numero_departamento=departamento.numero_departamento;
 
 -- 10)O comando a baixo seleciona a média dos salários dos funcionarios, respectivamente, dos departamentos 1, 4 e 5.
 
-select numero_departamento, avg(salario) as media_salario_dep
-from funcionario
-where numero_departamento=1 or numero_departamento=4 or numero_departamento=5
-group by numero_departamento;
+select concat(departamento.nome_departamento, ' Nº', funcionario.numero_departamento) as nome_e_numero_departamento, avg(funcionario.salario) as media_salario_dep
+from funcionario, departamento
+where funcionario.numero_departamento=1 or funcionario.numero_departamento=4 or funcionario.numero_departamento=5
+group by funcionario.numero_departamento;
 
 
 
 -- 11)
 
+select concat('(Nº', trabalha_em.numero_projeto, ')', projeto.nome_projeto) as numero_e_nome_projeto
+, concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
+, trabalha_em.horas
+, trabalha_em.horas * 50 as valor_em_horas_trabalhadas
+from (((funcionario 
+inner join departamento on (departamento.numero_departamento=funcionario.numero_departamento))
+left join projeto on (funcionario.numero_departamento=projeto.numero_departamento))
+left join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
+where funcionario.cpf = trabalha_em.cpf_funcionario
+order by trabalha_em.numero_projeto;
 
 
 
