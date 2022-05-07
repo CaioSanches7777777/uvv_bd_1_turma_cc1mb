@@ -92,7 +92,7 @@ left join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
 where funcionario.cpf = trabalha_em.cpf_funcionario
 order by trabalha_em.numero_projeto;
 
---favor ignorar o erro ,que ocorre quando a view relatorio_8 já foi criada, acima, essa view será usada na questão 9  
+--favor ignorar o erro ,que ocorre quando a view relatorio_8 já foi criada, acima, essa view será usada na questão 9.
 
 select * from relatorio_8;
 
