@@ -259,5 +259,3 @@ where nome_departamento='Matriz';
 
 
 -- 15)
-
-
