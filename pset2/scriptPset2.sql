@@ -74,7 +74,7 @@ order by salario desc;
 
 
 
--- 6)O comando a baixo seleciona as informações solicitaas no enunciado da questão 6 sobre e os funcionarios em seus respectivos dependentes.
+-- 6)O comando a baixo seleciona as informações solicitadas no enunciado da questão 6 sobre e os funcionarios em seus respectivos dependentes.
  
 select *
 from (select d.nome_departamento, concat(f.primeiro_nome, " ",f.nome_meio, ". ",f.ultimo_nome) as nome_completo_funcionario, concat(dts.nome_dependente, " ",f.nome_meio, ". ",f.ultimo_nome) as nome_completo_dependente, year(curdate()) - year(dts.data_nascimento) as idade_dependente,
@@ -86,7 +86,7 @@ from funcionario as f, departamento as d, dependente as dts
 where dts.cpf_funcionario = f.cpf and d.numero_departamento = f.numero_departamento) as formulario;
 
 
--- 7)O comando a baixo seleciona as informações solicitaas no enunciado da questão 7 sobre e os funcionarios sem dependentes.
+-- 7)O comando a baixo seleciona as informações solicitadas no enunciado da questão 7 sobre e os funcionarios sem dependentes.
 
 select departamento.nome_departamento, concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",ultimo_nome) as nome_completo_funcionario, concat('$', funcionario.salario) as salario
 from funcionario
@@ -96,7 +96,7 @@ where dependente.nome_dependente is null;
 
 
 
--- 8)O comando a baixo seleciona as informações solicitaas no enunciado da questão 8 sobre os projetos de cada departamento e numero de horas e os funcionarios associados a cada projeto.
+-- 8)O comando a baixo seleciona as informações solicitadas no enunciado da questão 8 sobre os projetos de cada departamento e numero de horas e os funcionarios associados a cada projeto.
 
 create view relatorio_8 as
 select departamento.nome_departamento
