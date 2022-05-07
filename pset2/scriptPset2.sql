@@ -211,3 +211,23 @@ where nome_departamento='Matriz';
 
 
 -- 15)
+
+select concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
+, departamento.nome_departamento
+, concat('(Nº', trabalha_em.numero_projeto, ')   ', projeto.nome_projeto) as numero_e_nome_projeto
+from (((funcionario 
+inner join departamento on (departamento.numero_departamento=funcionario.numero_departamento))
+inner join projeto on (funcionario.numero_departamento=projeto.numero_departamento))
+inner join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
+where funcionario.cpf = trabalha_em.cpf_funcionario
+union
+select concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
+, departamento.nome_departamento
+, concat('(Nº', trabalha_em.numero_projeto, ')   ', projeto.nome_projeto)
+from (((funcionario 
+inner join departamento on (departamento.numero_departamento=funcionario.numero_departamento))
+inner join projeto on (funcionario.numero_departamento=projeto.numero_departamento))
+inner join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
+where funcionario.cpf = trabalha_em.cpf_funcionario 
+and concat('(Nº', trabalha_em.numero_projeto, ')   ', projeto.nome_projeto) is null
+order by nome_completo_funcionario;
