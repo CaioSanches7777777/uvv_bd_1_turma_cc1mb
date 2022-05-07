@@ -120,7 +120,7 @@ select * from relatorio_8;
 -- 9)O comando a baixo seleciona o nome dos departamentos, o nome e o numero de cada projeto de cada departamento e a soma do numero de horas investidas em cada projeto.
 
 
-/*ESBOÇO VÁLIDO DA QUESTÃO 9
+ESBOÇO VÁLIDO DA QUESTÃO 9
 
 CREATE VIEW relatorio_9 as
 select nome_departamento, numero_e_nome_projeto, SUM(horas)
@@ -149,7 +149,7 @@ where numero_e_nome_projeto = '(Nº30)Novosbenefícios';
 /*Favor ignorar o erro (que ocorre quando a view relatorio_9 já foi criada) acima, essa view será usada como abreviação da questão 9*/
 
 select * from relatorio_9;
-*/
+
 
 
 
