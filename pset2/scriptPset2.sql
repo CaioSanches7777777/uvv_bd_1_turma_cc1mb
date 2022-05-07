@@ -236,9 +236,25 @@ order by idade desc;
 
 
 
--- 14)
+-- 14)O comando a baixo seleciona o nome dos departamentos e a soma do numero de funcionarios em cada departamento
 
+/*ESBOÇO VÁLIDO DA 14
 
+select departamento.nome_departamento, count(funcionario.cpf) as numero_de_funcionarios
+from funcionario 
+inner join departamento on departamento.numero_departamento=funcionario.numero_departamento
+where nome_departamento='Pesquisa'
+union
+select departamento.nome_departamento, count(funcionario.cpf) as numero_de_funcionarios
+from funcionario 
+inner join departamento on departamento.numero_departamento=funcionario.numero_departamento
+where nome_departamento='Administração'
+union 
+select departamento.nome_departamento, count(funcionario.cpf) as numero_de_funcionarios
+from funcionario 
+inner join departamento on departamento.numero_departamento=funcionario.numero_departamento
+where nome_departamento='Matriz';
+*/
 
 
 
