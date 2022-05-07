@@ -175,7 +175,7 @@ group by funcionario.numero_departamento;
 
 
 
--- 11)
+-- 11)O comando a baixo seleciona o nome dos projetos e dos funcionarios associados ao respectivos projetos e o valor que o funcionario receberá referente às horas trabalhadas.
 
 select concat('(Nº', trabalha_em.numero_projeto, ')', projeto.nome_projeto) as numero_e_nome_projeto
 , concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
@@ -189,7 +189,7 @@ order by trabalha_em.numero_projeto;
 
 
 
--- 12)
+-- 12)O comando a baixo seleciona o nome dos projetos e dos funcionarios associados ao respectivos projetos que não registraram horas trabalhadas.
 
 
 
@@ -212,8 +212,26 @@ where tm.horas is null
 
 
 
--- 13)
+-- 13)O comando a baixo seleciona os dados dos funcionarios e seus dependentes, especificando-os como funcionarios ou dependentes.
 
+select *
+from (select concat(f.primeiro_nome, " ",f.nome_meio, ". ",f.ultimo_nome, " (funcionario)") as nome_completo
+      , year(curdate()) - year(f.data_nascimento) as idade
+      , case f.sexo
+            when 'M' then 'Masculino'
+            when 'F' then 'Feminino'
+      end as sexo
+      from funcionario as f, departamento as d
+      union
+      select concat(dts.nome_dependente, " ",f.nome_meio, ". ",f.ultimo_nome, " (dependente)") as nome_completo
+      , year(curdate()) - year(dts.data_nascimento) as idade
+      , case dts.sexo
+            when 'M' then 'Masculino'
+            when 'F' then 'Feminino'
+      end as sexo     
+from funcionario as f, departamento as d, dependente as dts
+where dts.cpf_funcionario = f.cpf and d.numero_departamento = f.numero_departamento) as presenteados
+order by idade desc;
 
 
 
