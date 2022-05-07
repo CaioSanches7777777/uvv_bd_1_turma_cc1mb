@@ -209,6 +209,45 @@ order by idade desc;
 
 
 
+--14)
+/*Válido
+select departamento.nome_departamento, count(funcionario.cpf) as numero_de_funcionarios
+from funcionario 
+inner join departamento on departamento.numero_departamento=funcionario.numero_departamento
+where nome_departamento='Pesquisa'
+union
+select departamento.nome_departamento, count(funcionario.cpf) as numero_de_funcionarios
+from funcionario 
+inner join departamento on departamento.numero_departamento=funcionario.numero_departamento
+where nome_departamento='Administração'
+union 
+select departamento.nome_departamento, count(funcionario.cpf) as numero_de_funcionarios
+from funcionario 
+inner join departamento on departamento.numero_departamento=funcionario.numero_departamento
+where nome_departamento='Matriz';
+*/
+
+
+
+
+select nome_departamento, count(numero_de_funcionarios)
+from (select distinct departamento.nome_departamento, funcionario.cpf as numero_de_funcionarios
+from departamento
+inner join funcionario on funcionario.numero_departamento=departamento.numero_departamento) as relatorio;
+
+
+select distinct departamento.nome_departamento, funcionario.cpf as numero_de_funcionarios
+from departamento
+inner join funcionario on funcionario.numero_departamento=departamento.numero_departamento;
+
+
+select nome_departamento, numero_de_funcionarios
+from (select distinct departamento.nome_departamento, funcionario.cpf as numero_de_funcionarios
+from departamento
+left join funcionario on funcionario.numero_departamento=departamento.numero_departamento
+where funcionario.numero_departamento=departamento.numero_departamento) as relatorio;
+
+
 
 
 
