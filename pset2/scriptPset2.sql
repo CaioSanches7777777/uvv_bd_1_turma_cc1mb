@@ -55,24 +55,6 @@ where not cpf_gerente = cpf
 order by salario desc) as funcionario;
 
 
-/* ESBOÇO VÁLIDO DA PARTE DE GERENTES DA QUESTÃO 5
-select departamento.nome_departamento, funcionario.primeiro_nome as primeiro_nome, funcionario.nome_meio as nome_meio, funcionario.ultimo_nome as ultimo_nome
-from departamento
-inner join funcionario on departamento.numero_departamento=funcionario.numero_departamento
-where cpf_gerente = cpf
-order by nome_departamento asc;
-*/
-
-/* ESBOÇO VÁLIDO DA PARTE DE NÃO GERENTES DA QUESTÃO 5
-select departamento.nome_departamento, funcionario.primeiro_nome as primeiro_nome, funcionario.nome_meio as nome_meio, funcionario.ultimo_nome as ultimo_nome
-from departamento
-inner join funcionario on departamento.numero_departamento=funcionario.numero_departamento
-where not cpf_gerente = cpf;
-where not cpf_gerente = cpf
-order by salario desc;
-*/
-
-
 
 -- 6)O comando a baixo seleciona as informações solicitadas no enunciado da questão 6 sobre e os funcionarios em seus respectivos dependentes.
  
@@ -152,21 +134,6 @@ select * from relatorio_9;
 
 
 
-
-/*RACUNHO INCOMPLETO DA 9
-select trabalha_em.horas
-, projeto.nome_projeto
-, departamento.nome_departamento
-from (projeto
-inner join departamento on (departamento.numero_departamento=projeto.numero_departamento)
-inner join trabalha_em on (trabalha_em.numero_projeto=projeto.numero_projeto))
-where projeto.numero_projeto = trabalha_em.numero_projeto
-and projeto.numero_departamento=departamento.numero_departamento;
-*/
-
-
-
-
 -- 10)O comando a baixo seleciona a média dos salários dos funcionarios, respectivamente, dos departamentos 1, 4 e 5.
 
 select concat(departamento.nome_departamento, ' Nº', funcionario.numero_departamento) as nome_e_numero_departamento, concat('$', avg(funcionario.salario)) as media_salario_dep
@@ -192,11 +159,6 @@ order by trabalha_em.numero_projeto;
 
 -- 12)O comando a baixo seleciona o nome dos projetos e dos funcionarios associados ao respectivos projetos que não registraram horas trabalhadas.
 
-
-
-
-/*RASCUNHO 12
-
 select concat(f.primeiro_nome, " ", f.nome_meio, ". ", f.ultimo_nome) as nome_completo_funcionario
 , tm.cpf_funcionario
 , concat('(Nº', tm.numero_projeto, ') ', pj.nome_projeto) as nome_e_numero_projeto
@@ -204,12 +166,7 @@ select concat(f.primeiro_nome, " ", f.nome_meio, ". ", f.ultimo_nome) as nome_co
 from trabalha_em as tm
 inner join funcionario as f on tm.cpf_funcionario=f.cpf
 inner join projeto as pj on tm.numero_projeto=pj.numero_projeto
-where tm.horas is null 
-;
-
-
-*/
-
+where tm.horas is null;
 
 
 
@@ -239,8 +196,6 @@ order by idade desc;
 
 -- 14)O comando a baixo seleciona o nome dos departamentos e a soma do numero de funcionarios em cada departamento
 
-/*ESBOÇO VÁLIDO DA 14
-
 select departamento.nome_departamento, count(funcionario.cpf) as numero_de_funcionarios
 from funcionario 
 inner join departamento on departamento.numero_departamento=funcionario.numero_departamento
@@ -255,7 +210,6 @@ select departamento.nome_departamento, count(funcionario.cpf) as numero_de_funci
 from funcionario 
 inner join departamento on departamento.numero_departamento=funcionario.numero_departamento
 where nome_departamento='Matriz';
-*/
 
 
 
