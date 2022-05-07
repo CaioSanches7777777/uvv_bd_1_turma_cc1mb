@@ -92,7 +92,7 @@ left join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
 where funcionario.cpf = trabalha_em.cpf_funcionario
 order by trabalha_em.numero_projeto;
 
---favor ignorar o erro ,que ocorre quando a view relatorio_8 já foi criada, acima, essa view será usada na questão 9.
+/*Favor ignorar o erro ,que ocorre quando a view relatorio_8 já foi criada, acima, essa view será usada na questão 9.*/
 
 select * from relatorio_8;
 
@@ -126,6 +126,7 @@ union
 select nome_departamento, numero_e_nome_projeto, SUM(horas)
 from relatorio_8
 where numero_e_nome_projeto = '(Nº30)Novosbenefícios';
+
 /*Favor ignorar o erro (que ocorre quando a view relatorio_9 já foi criada) acima, essa view será usada como abreviação da questão 9*/
 
 select * from relatorio_9;
