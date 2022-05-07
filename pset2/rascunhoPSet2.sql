@@ -184,6 +184,38 @@ where tm.horas is null
 
 
 
+--13)
+select *
+from (select concat(f.primeiro_nome, " ",f.nome_meio, ". ",f.ultimo_nome, " (funcionario)") as nome_completo
+      , year(curdate()) - year(f.data_nascimento) as idade
+      , case f.sexo
+            when 'M' then 'Masculino'
+            when 'F' then 'Feminino'
+      end as sexo
+      from funcionario as f, departamento as d
+      union
+      select concat(dts.nome_dependente, " ",f.nome_meio, ". ",f.ultimo_nome, " (dependente)") as nome_completo
+      , year(curdate()) - year(dts.data_nascimento) as idade
+      , case dts.sexo
+            when 'M' then 'Masculino'
+            when 'F' then 'Feminino'
+      end as sexo     
+from funcionario as f, departamento as d, dependente as dts
+where dts.cpf_funcionario = f.cpf and d.numero_departamento = f.numero_departamento) as presenteados
+order by idade desc;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 select *
