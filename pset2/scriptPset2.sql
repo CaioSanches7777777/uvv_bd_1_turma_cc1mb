@@ -214,23 +214,33 @@ where nome_departamento='Matriz';
 
 -- 15)O comando a baixo seleciona as informações solicitadas no enunciado da questão 15 sobre o nome de cada epartamento, os projetos de cada departamento e os funcionarios associados ou não a um projeto.
 
-select concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
+select 
+case trabalha_em.cpf_funcionario
+      when trabalha_em.cpf_funcionario then concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome)
+      end as nome_funcionario
 , departamento.nome_departamento
-, concat('(Nº', trabalha_em.numero_projeto, ')   ', projeto.nome_projeto) as numero_e_nome_projeto
-from (((funcionario 
-inner join departamento on (departamento.numero_departamento=funcionario.numero_departamento))
-inner join projeto on (funcionario.numero_departamento=projeto.numero_departamento))
-inner join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
-where funcionario.cpf = trabalha_em.cpf_funcionario
-union
-select concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
+, case trabalha_em.numero_projeto
+      when trabalha_em.numero_projeto then concat('(Nº', trabalha_em.numero_projeto, ')   ', projeto.nome_projeto) 
+      else ''
+      end as numero_e_nome_projeto
+from (((trabalha_em
+inner join funcionario on (trabalha_em.cpf_funcionario=funcionario.cpf))
+left join projeto on (trabalha_em.numero_projeto=projeto.numero_projeto))
+inner join departamento on (projeto.numero_departamento=departamento.numero_departamento))
+union 
+select
+case trabalha_em.cpf_funcionario
+      when trabalha_em.cpf_funcionario then concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome)
+      end as nome_funcionario
 , departamento.nome_departamento
-, concat('(Nº', trabalha_em.numero_projeto, ')   ', projeto.nome_projeto)
-from (((funcionario 
-inner join departamento on (departamento.numero_departamento=funcionario.numero_departamento))
-inner join projeto on (funcionario.numero_departamento=projeto.numero_departamento))
-inner join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
-where funcionario.cpf = trabalha_em.cpf_funcionario 
-and concat('(Nº', trabalha_em.numero_projeto, ')   ', projeto.nome_projeto) is null
-order by nome_completo_funcionario;
+, case trabalha_em.numero_projeto
+      when trabalha_em.numero_projeto then concat('(Nº', trabalha_em.numero_projeto, ')   ', projeto.nome_projeto) 
+      else ''
+      end as numero_e_nome_projeto
+from (((trabalha_em
+inner join funcionario on (trabalha_em.cpf_funcionario=funcionario.cpf))
+left join projeto on (trabalha_em.numero_projeto=projeto.numero_projeto))
+inner join departamento on (projeto.numero_departamento=departamento.numero_departamento))
+where concat('(Nº', trabalha_em.numero_projeto, ')   ', projeto.nome_projeto) is null
+order by nome_funcionario;
 
