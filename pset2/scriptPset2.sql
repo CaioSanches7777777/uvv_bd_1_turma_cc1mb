@@ -194,6 +194,23 @@ order by trabalha_em.numero_projeto;
 
 
 
+/*RASCUNHO 12
+
+select concat(f.primeiro_nome, " ", f.nome_meio, ". ", f.ultimo_nome) as nome_completo_funcionario
+, tm.cpf_funcionario
+, concat('(Nº', tm.numero_projeto, ') ', pj.nome_projeto) as nome_e_numero_projeto
+, tm.horas
+from trabalha_em as tm
+inner join funcionario as f on tm.cpf_funcionario=f.cpf
+inner join projeto as pj on tm.numero_projeto=pj.numero_projeto
+where tm.horas is null 
+;
+
+
+*/
+
+
+
 
 -- 13)
 
