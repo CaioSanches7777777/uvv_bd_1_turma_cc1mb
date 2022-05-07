@@ -7,6 +7,43 @@ https://www.w3schools.com/sql/func_mysql_replace.asp
 
 
 
+
+
+
+/* ESBOÇO VÁLIDO DA PARTE DE GERENTES DA QUESTÃO 5
+select departamento.nome_departamento, funcionario.primeiro_nome as primeiro_nome, funcionario.nome_meio as nome_meio, funcionario.ultimo_nome as ultimo_nome
+from departamento
+inner join funcionario on departamento.numero_departamento=funcionario.numero_departamento
+where cpf_gerente = cpf
+order by nome_departamento asc;
+*/
+
+/* ESBOÇO VÁLIDO DA PARTE DE NÃO GERENTES DA QUESTÃO 5
+select departamento.nome_departamento, funcionario.primeiro_nome as primeiro_nome, funcionario.nome_meio as nome_meio, funcionario.ultimo_nome as ultimo_nome
+from departamento
+inner join funcionario on departamento.numero_departamento=funcionario.numero_departamento
+where not cpf_gerente = cpf;
+where not cpf_gerente = cpf
+order by salario desc;
+*/
+
+
+
+
+
+
+
+/*RACUNHO INCOMPLETO DA 9
+select trabalha_em.horas
+, projeto.nome_projeto
+, departamento.nome_departamento
+from (projeto
+inner join departamento on (departamento.numero_departamento=projeto.numero_departamento)
+inner join trabalha_em on (trabalha_em.numero_projeto=projeto.numero_projeto))
+where projeto.numero_projeto = trabalha_em.numero_projeto
+and projeto.numero_departamento=departamento.numero_departamento;
+*/
+
 create view relatorio_6 as
 select *
 from (select d.nome_departamento, concat(f.primeiro_nome, " ",f.nome_meio, ". ",f.ultimo_nome) as nome_completo_funcionario, concat(dts.nome_dependente, " ",f.nome_meio, ". ",f.ultimo_nome) as nome_completo_dependente, year(curdate()) - year(dts.data_nascimento) as idade_dependente,
@@ -246,6 +283,121 @@ from (select distinct departamento.nome_departamento, funcionario.cpf as numero_
 from departamento
 left join funcionario on funcionario.numero_departamento=departamento.numero_departamento
 where funcionario.numero_departamento=departamento.numero_departamento) as relatorio;
+
+
+
+
+
+--15)
+select concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
+, departamento.nome_departamento
+, concat('(Nº', trabalha_em.numero_projeto, ')   ', projeto.nome_projeto) as numero_e_nome_projeto
+from (((funcionario 
+inner join departamento on (departamento.numero_departamento=funcionario.numero_departamento))
+inner join projeto on (funcionario.numero_departamento=projeto.numero_departamento))
+inner join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
+where funcionario.cpf = trabalha_em.cpf_funcionario
+union
+select concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
+, departamento.nome_departamento
+, concat('(Nº', trabalha_em.numero_projeto, ')   ', projeto.nome_projeto)
+from (((funcionario 
+inner join departamento on (departamento.numero_departamento=funcionario.numero_departamento))
+inner join projeto on (funcionario.numero_departamento=projeto.numero_departamento))
+inner join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
+where funcionario.cpf = trabalha_em.cpf_funcionario 
+and concat('(Nº', trabalha_em.numero_projeto, ')   ', projeto.nome_projeto) is null
+order by nome_completo_funcionario;
+
+
+
+
+
+
+
+
+
+
+/* variação da 9 sem o relatorio_8
+
+select nome_departamento, numero_e_nome_projeto, SUM(horas)
+from (select departamento.nome_departamento
+      , concat('(Nº', trabalha_em.numero_projeto, ')', projeto.nome_projeto) as numero_e_nome_projeto
+      , concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
+      , trabalha_em.horas
+      from (((funcionario 
+      inner join departamento on (departamento.numero_departamento=funcionario.numero_departamento))
+      left join projeto on (funcionario.numero_departamento=projeto.numero_departamento))
+      left join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
+      where funcionario.cpf = trabalha_em.cpf_funcionario
+      order by trabalha_em.numero_projeto) as produto1
+where numero_e_nome_projeto = '(Nº1)ProdutoX'
+union
+select nome_departamento, numero_e_nome_projeto, SUM(horas)
+from (select departamento.nome_departamento
+      , concat('(Nº', trabalha_em.numero_projeto, ')', projeto.nome_projeto) as numero_e_nome_projeto
+      , concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
+      , trabalha_em.horas
+      from (((funcionario 
+      inner join departamento on (departamento.numero_departamento=funcionario.numero_departamento))
+      left join projeto on (funcionario.numero_departamento=projeto.numero_departamento))
+      left join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
+      where funcionario.cpf = trabalha_em.cpf_funcionario
+      order by trabalha_em.numero_projeto) as produto2
+where numero_e_nome_projeto = '(Nº2)ProdutoY'
+union
+select nome_departamento, numero_e_nome_projeto, SUM(horas)
+from (select departamento.nome_departamento
+      , concat('(Nº', trabalha_em.numero_projeto, ')', projeto.nome_projeto) as numero_e_nome_projeto
+      , concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
+      , trabalha_em.horas
+      from (((funcionario 
+      inner join departamento on (departamento.numero_departamento=funcionario.numero_departamento))
+      left join projeto on (funcionario.numero_departamento=projeto.numero_departamento))
+      left join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
+      where funcionario.cpf = trabalha_em.cpf_funcionario
+      order by trabalha_em.numero_projeto) as produto3
+where numero_e_nome_projeto = '(Nº3)ProdutoZ'
+union
+select nome_departamento, numero_e_nome_projeto, SUM(horas)
+from (select departamento.nome_departamento
+      , concat('(Nº', trabalha_em.numero_projeto, ')', projeto.nome_projeto) as numero_e_nome_projeto
+      , concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
+      , trabalha_em.horas
+      from (((funcionario 
+      inner join departamento on (departamento.numero_departamento=funcionario.numero_departamento))
+      left join projeto on (funcionario.numero_departamento=projeto.numero_departamento))
+      left join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
+      where funcionario.cpf = trabalha_em.cpf_funcionario
+      order by trabalha_em.numero_projeto) as produto10
+where numero_e_nome_projeto = '(Nº10)Informatização'
+union
+select nome_departamento, numero_e_nome_projeto, SUM(horas)
+from (select departamento.nome_departamento
+      , concat('(Nº', trabalha_em.numero_projeto, ')', projeto.nome_projeto) as numero_e_nome_projeto
+      , concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
+      , trabalha_em.horas
+      from (((funcionario 
+      inner join departamento on (departamento.numero_departamento=funcionario.numero_departamento))
+      left join projeto on (funcionario.numero_departamento=projeto.numero_departamento))
+      left join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
+      where funcionario.cpf = trabalha_em.cpf_funcionario
+      order by trabalha_em.numero_projeto) as produto20
+where numero_e_nome_projeto = '(Nº20)Reorganização'
+union
+select nome_departamento, numero_e_nome_projeto, SUM(horas)
+from (select departamento.nome_departamento
+      , concat('(Nº', trabalha_em.numero_projeto, ')', projeto.nome_projeto) as numero_e_nome_projeto
+      , concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
+      , trabalha_em.horas
+      from (((funcionario 
+      inner join departamento on (departamento.numero_departamento=funcionario.numero_departamento))
+      left join projeto on (funcionario.numero_departamento=projeto.numero_departamento))
+      left join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
+      where funcionario.cpf = trabalha_em.cpf_funcionario
+      order by trabalha_em.numero_projeto) as produto30
+where numero_e_nome_projeto = '(Nº30)Novosbenefícios';
+*/
 
 
 
