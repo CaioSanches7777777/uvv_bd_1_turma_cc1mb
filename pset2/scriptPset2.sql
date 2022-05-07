@@ -116,7 +116,7 @@ select * from relatorio_8;
 
 
 
--- 9)
+-- 9)O comando a baixo seleciona o nome dos departamentos, o nome e o numero de cada projeto de cada departamento e a soma do numero de horas investidas em cada projeto.
 
 
 /*ESBOÇO VÁLIDO DA QUESTÃO 9
