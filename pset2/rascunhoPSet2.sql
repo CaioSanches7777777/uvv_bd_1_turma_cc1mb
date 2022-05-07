@@ -289,6 +289,8 @@ where funcionario.numero_departamento=departamento.numero_departamento) as relat
 
 
 --15)
+
+/* rascunho errado
 select concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
 , departamento.nome_departamento
 , concat('(Nº', trabalha_em.numero_projeto, ')   ', projeto.nome_projeto) as numero_e_nome_projeto
@@ -309,8 +311,56 @@ where funcionario.cpf = trabalha_em.cpf_funcionario
 and concat('(Nº', trabalha_em.numero_projeto, ')   ', projeto.nome_projeto) is null
 order by nome_completo_funcionario;
 
+*/
 
 
+
+
+
+select 
+case trabalha_em.cpf_funcionario
+      when trabalha_em.cpf_funcionario then funcionario.primeiro_nome end as nome_funcionario
+, departamento.nome_departamento
+, case trabalha_em.numero_projeto
+      when p.numero_projeto then p.nome_projeto end as nome_do_projeto
+from departamento, trabalha_em, funcionario
+left join departamento as d on (d.numero_departamento=funcionario.numero_departamento)
+left join projeto as p on (funcionario.numero_departamento=p.numero_departamento)
+right join trabalha_em as tm on (p.numero_projeto=tm.numero_projeto)
+where funcionario.cpf = trabalha_em.cpf_funcionario
+order by nome_funcionario;
+
+
+/* codigo da 15*/
+select 
+case trabalha_em.cpf_funcionario
+      when trabalha_em.cpf_funcionario then concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome)
+      end as nome_funcionario
+, departamento.nome_departamento
+, case trabalha_em.numero_projeto
+      when trabalha_em.numero_projeto then concat('(Nº', trabalha_em.numero_projeto, ')   ', projeto.nome_projeto) 
+      else ''
+      end as numero_e_nome_projeto
+from (((trabalha_em
+inner join funcionario on (trabalha_em.cpf_funcionario=funcionario.cpf))
+left join projeto on (trabalha_em.numero_projeto=projeto.numero_projeto))
+inner join departamento on (projeto.numero_departamento=departamento.numero_departamento))
+union 
+select
+case trabalha_em.cpf_funcionario
+      when trabalha_em.cpf_funcionario then concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome)
+      end as nome_funcionario
+, departamento.nome_departamento
+, case trabalha_em.numero_projeto
+      when trabalha_em.numero_projeto then concat('(Nº', trabalha_em.numero_projeto, ')   ', projeto.nome_projeto) 
+      else ''
+      end as numero_e_nome_projeto
+from (((trabalha_em
+inner join funcionario on (trabalha_em.cpf_funcionario=funcionario.cpf))
+left join projeto on (trabalha_em.numero_projeto=projeto.numero_projeto))
+inner join departamento on (projeto.numero_departamento=departamento.numero_departamento))
+where concat('(Nº', trabalha_em.numero_projeto, ')   ', projeto.nome_projeto) is null
+order by nome_funcionario;
 
 
 
