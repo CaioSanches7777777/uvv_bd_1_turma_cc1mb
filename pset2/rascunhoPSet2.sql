@@ -156,11 +156,29 @@ order by trabalha_em.numero_projeto;
 
 
 --12)
+/*RASCUNHO ERRADO
+select departamento.nome_departamento
+, concat('(Nº', trabalha_em.numero_projeto, ')', projeto.nome_projeto) as numero_e_nome_projeto
+, concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
+, trabalha_em.horas
+from (((funcionario 
+inner join departamento on (departamento.numero_departamento=funcionario.numero_departamento))
+left join projeto on (funcionario.numero_departamento=projeto.numero_departamento))
+left join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
+right join 
+where funcionario.cpf = trabalha_em.cpf_funcionario
+order by trabalha_em.numero_projeto;
+*/
 
-
-
-
-
+select concat(f.primeiro_nome, " ", f.nome_meio, ". ", f.ultimo_nome) as nome_completo_funcionario
+, tm.cpf_funcionario
+, concat('(Nº', tm.numero_projeto, ') ', pj.nome_projeto) as nome_e_numero_projeto
+, tm.horas
+from trabalha_em as tm
+inner join funcionario as f on tm.cpf_funcionario=f.cpf
+inner join projeto as pj on tm.numero_projeto=pj.numero_projeto
+where tm.horas is null 
+;
 
 
 
@@ -197,3 +215,6 @@ case
 when sexo = 'M' then 'Masculino'
 end;
 */
+
+
+
