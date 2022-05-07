@@ -210,7 +210,7 @@ where nome_departamento='Matriz';
 
 
 
--- 15)
+-- 15)O comando a baixo seleciona as informações solicitadas no enunciado da questão 15 sobre o nome de cada epartamento, os projetos de cada departamento e os funcionarios associados ou não a um projeto.
 
 select concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
 , departamento.nome_departamento
@@ -231,3 +231,4 @@ inner join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
 where funcionario.cpf = trabalha_em.cpf_funcionario 
 and concat('(Nº', trabalha_em.numero_projeto, ')   ', projeto.nome_projeto) is null
 order by nome_completo_funcionario;
+
