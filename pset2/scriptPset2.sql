@@ -136,7 +136,8 @@ select * from relatorio_9;
 -- 10)O comando a baixo seleciona a média dos salários dos funcionarios, respectivamente, dos departamentos 1, 4 e 5.
 
 select concat(departamento.nome_departamento, ' Nº', funcionario.numero_departamento) as nome_e_numero_departamento, concat('$', avg(funcionario.salario)) as media_salario_dep
-from funcionario, departamento
+from funcionario 
+inner join departamento on (funcionario.numero_departamento=departamento.numero_departamento)
 where funcionario.numero_departamento=1 or funcionario.numero_departamento=4 or funcionario.numero_departamento=5
 group by funcionario.numero_departamento;
 
