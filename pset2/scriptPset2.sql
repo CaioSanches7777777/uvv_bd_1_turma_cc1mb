@@ -35,7 +35,7 @@ where salario<35000
 union 
 select concat(primeiro_nome, " ",nome_meio, ". ",ultimo_nome) data_nascimento, year(curdate()) - year(data_nascimento) as idade, concat('$', salario) as salario_atual, concat('$', (salario+((salario div 100)*15))) as salario_com_reajuste
 from funcionario
-where salario>35000;
+where salario>35000 or salario = 35000;
 
 
 -- 5)O comando a baixo seleciona as informações sobre os funcionarios solicitadas no enunciado da questão 5.
