@@ -80,7 +80,7 @@ where dependente.nome_dependente is null;
 
 -- 8)O comando a baixo seleciona as informações solicitadas no enunciado da questão 8 sobre os projetos de cada departamento e numero de horas e os funcionarios associados a cada projeto.
 
-create view relatorio_8 as
+
 select departamento.nome_departamento
 , concat('(Nº', trabalha_em.numero_projeto, ')', projeto.nome_projeto) as numero_e_nome_projeto
 , concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
@@ -92,9 +92,7 @@ left join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
 where funcionario.cpf = trabalha_em.cpf_funcionario
 order by trabalha_em.numero_projeto;
 
-/*Favor ignorar o erro ,que ocorre quando a view relatorio_8 já foi criada, acima, essa view será usada na questão 9.*/
 
-select * from relatorio_8;
 
 
 
@@ -102,7 +100,15 @@ select * from relatorio_8;
 
 -- 9)O comando a baixo seleciona o nome dos departamentos, o nome e o numero de cada projeto de cada departamento e a soma do numero de horas investidas em cada projeto.
 
-
+select sum(horas)
+, projeto.nome_projeto
+, departamento.nome_departamento
+from (projeto
+inner join departamento on (departamento.numero_departamento=projeto.numero_departamento)
+inner join trabalha_em on (trabalha_em.numero_projeto=projeto.numero_projeto))
+where projeto.numero_projeto = trabalha_em.numero_projeto
+and projeto.numero_departamento=departamento.numero_departamento
+group by nome_projeto;
 select nome_departamento, numero_e_nome_projeto, SUM(horas)
 from relatorio_8
 group by numero_e_nome_projeto;
