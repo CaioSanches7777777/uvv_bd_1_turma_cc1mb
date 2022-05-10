@@ -1,6 +1,6 @@
 use uvv;
 
--- 1)O comando a baixo seleciona a média dos salários dos funcionarios, respectivamente, dos departamentos 1, 4 e 5.
+-- 1)O comando a baixo seleciona a média dos salários dos funcionarios de cada departamento.
 
 select numero_departamento, concat('$', avg(salario)) as media_salario_dep
 from funcionario
