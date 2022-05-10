@@ -44,6 +44,30 @@ where projeto.numero_projeto = trabalha_em.numero_projeto
 and projeto.numero_departamento=departamento.numero_departamento;
 */
 
+/*novo rascunho da 9*/
+select nome_departamento, numero_e_nome_projeto, SUM(horas)
+from relatorio_8
+group by numero_e_nome_projeto;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 create view relatorio_6 as
 select *
 from (select d.nome_departamento, concat(f.primeiro_nome, " ",f.nome_meio, ". ",f.ultimo_nome) as nome_completo_funcionario, concat(dts.nome_dependente, " ",f.nome_meio, ". ",f.ultimo_nome) as nome_completo_dependente, year(curdate()) - year(dts.data_nascimento) as idade_dependente,
@@ -263,6 +287,33 @@ from funcionario
 inner join departamento on departamento.numero_departamento=funcionario.numero_departamento
 where nome_departamento='Matriz';
 */
+
+/*14 com union
+select departamento.nome_departamento, count(funcionario.cpf) as numero_de_funcionarios
+from funcionario 
+inner join departamento on departamento.numero_departamento=funcionario.numero_departamento
+where nome_departamento='Pesquisa'
+union
+select departamento.nome_departamento, count(funcionario.cpf) as numero_de_funcionarios
+from funcionario 
+inner join departamento on departamento.numero_departamento=funcionario.numero_departamento
+where nome_departamento='Administração'
+union 
+select departamento.nome_departamento, count(funcionario.cpf) as numero_de_funcionarios
+from funcionario 
+inner join departamento on departamento.numero_departamento=funcionario.numero_departamento
+where nome_departamento='Matriz';
+*/
+
+/*14 sem union*/
+select departamento.nome_departamento, count(funcionario.cpf) as numero_de_funcionarios
+from funcionario 
+inner join departamento on departamento.numero_departamento=funcionario.numero_departamento
+group by departamento.nome_departamento;
+
+
+
+
 
 
 
