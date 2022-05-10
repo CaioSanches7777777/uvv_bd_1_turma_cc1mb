@@ -178,17 +178,7 @@ order by idade desc;
 select departamento.nome_departamento, count(funcionario.cpf) as numero_de_funcionarios
 from funcionario 
 inner join departamento on departamento.numero_departamento=funcionario.numero_departamento
-where nome_departamento='Pesquisa'
-union
-select departamento.nome_departamento, count(funcionario.cpf) as numero_de_funcionarios
-from funcionario 
-inner join departamento on departamento.numero_departamento=funcionario.numero_departamento
-where nome_departamento='Administração'
-union 
-select departamento.nome_departamento, count(funcionario.cpf) as numero_de_funcionarios
-from funcionario 
-inner join departamento on departamento.numero_departamento=funcionario.numero_departamento
-where nome_departamento='Matriz';
+group by departamento.nome_departamento;
 
 
 
