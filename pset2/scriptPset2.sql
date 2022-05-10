@@ -113,7 +113,7 @@ group by nome_projeto;
 
 
 
--- 10)O comando a baixo seleciona a média dos salários dos funcionarios, respectivamente, dos departamentos 1, 4 e 5.
+-- 10)O comando a baixo seleciona a média dos salários dos funcionarios de cada departamento.
 
 select concat(departamento.nome_departamento, ' Nº', funcionario.numero_departamento) as nome_e_numero_departamento, concat('$', avg(funcionario.salario)) as media_salario_dep
 from funcionario 
