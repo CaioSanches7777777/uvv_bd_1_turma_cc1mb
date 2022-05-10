@@ -82,15 +82,19 @@ where dependente.nome_dependente is null;
 
 
 select departamento.nome_departamento
-, concat('(Nº', trabalha_em.numero_projeto, ')', projeto.nome_projeto) as numero_e_nome_projeto
-, concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome) as nome_completo_funcionario
+, case trabalha_em.cpf_funcionario
+      when trabalha_em.cpf_funcionario then concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome)
+end as nome_completo_funcionario
+, case trabalha_em.numero_projeto
+       when trabalha_em.numero_projeto then concat("(Nº", trabalha_em.numero_projeto, ") ", projeto.nome_projeto)
+end as numero_e_nome_projeto
 , trabalha_em.horas
-from (((funcionario 
-inner join departamento on (departamento.numero_departamento=funcionario.numero_departamento))
-left join projeto on (funcionario.numero_departamento=projeto.numero_departamento))
-left join trabalha_em on (projeto.numero_projeto=trabalha_em.numero_projeto))
-where funcionario.cpf = trabalha_em.cpf_funcionario
+from trabalha_em
+inner join funcionario on trabalha_em.cpf_funcionario=funcionario.cpf
+inner join projeto on trabalha_em.numero_projeto=projeto.numero_projeto
+inner join departamento on projeto.numero_departamento=departamento.numero_departamento
 order by trabalha_em.numero_projeto;
+
 
 
 
