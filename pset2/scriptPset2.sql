@@ -98,26 +98,17 @@ order by trabalha_em.numero_projeto;
 
 
 
-
-
-
-
 -- 9)O comando a baixo seleciona o nome dos departamentos, o nome e o numero de cada projeto de cada departamento e a soma do numero de horas investidas em cada projeto.
 
-select sum(horas)
+select departamento.nome_departamento
 , projeto.nome_projeto
-, departamento.nome_departamento
+, sum(horas) as soma_de_horas
 from (projeto
 inner join departamento on (departamento.numero_departamento=projeto.numero_departamento)
 inner join trabalha_em on (trabalha_em.numero_projeto=projeto.numero_projeto))
 where projeto.numero_projeto = trabalha_em.numero_projeto
 and projeto.numero_departamento=departamento.numero_departamento
 group by nome_projeto;
-select nome_departamento, numero_e_nome_projeto, SUM(horas)
-from relatorio_8
-group by numero_e_nome_projeto;
-
-
 
 
 
