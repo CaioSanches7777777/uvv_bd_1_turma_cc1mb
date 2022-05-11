@@ -7,11 +7,16 @@ https://www.w3schools.com/sql/func_mysql_replace.asp
 
 
 create view relatorio_4 as 
-select concat(primeiro_nome, " ",nome_meio, ". ",ultimo_nome) as nome_completo_funcionario, year(curdate()) - year(data_nascimento) as idade, concat('$', salario) as salario_atual, concat('$', (salario+((salario div 10)*2))) as salario_com_reajuste
+select concat(primeiro_nome, " ",nome_meio, ". ",ultimo_nome) as nome_completo_funcionario
+, year(curdate()) - year(data_nascimento) as idade
+, concat('$', salario) as salario_atual
+, concat('$', (salario+((salario div 10)*2))) as salario_com_reajuste
 from funcionario
 where salario<35000
 union 
-select concat(primeiro_nome, " ",nome_meio, ". ",ultimo_nome) data_nascimento, year(curdate()) - year(data_nascimento) as idade, concat('$', salario) as salario_atual, concat('$', (salario+((salario div 100)*15))) as salario_com_reajuste
+select concat(primeiro_nome, " ",nome_meio, ". ",ultimo_nome)
+, year(curdate()) - year(data_nascimento) as idade, concat('$', salario) as salario_atual
+, concat('$', (salario+((salario div 100)*15))) as salario_com_reajuste
 from funcionario
 where salario>35000 or salario = 35000;
 select 
