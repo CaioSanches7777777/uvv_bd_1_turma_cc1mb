@@ -6,6 +6,42 @@ https://www.w3schools.com/sql/func_mysql_replace.asp
 -- questão 10 = questão 1
 
 
+create view relatorio_4 as 
+select concat(primeiro_nome, " ",nome_meio, ". ",ultimo_nome) as nome_completo_funcionario, year(curdate()) - year(data_nascimento) as idade, concat('$', salario) as salario_atual, concat('$', (salario+((salario div 10)*2))) as salario_com_reajuste
+from funcionario
+where salario<35000
+union 
+select concat(primeiro_nome, " ",nome_meio, ". ",ultimo_nome) data_nascimento, year(curdate()) - year(data_nascimento) as idade, concat('$', salario) as salario_atual, concat('$', (salario+((salario div 100)*15))) as salario_com_reajuste
+from funcionario
+where salario>35000 or salario = 35000;
+select 
+case trabalha_em.cpf_funcionario
+      when trabalha_em.cpf_funcionario then concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome)
+end as nome_completo_funcionario
+, funcionario.cpf as cpf_funcionario
+, funcionario.data_nascimento
+, year(curdate()) - year(funcionario.data_nascimento) as idade
+, funcionario.endereco as endereço
+, concat("(Nº", departamento.numero_departamento, ") ", departamento.nome_departamento) as numero_e_nome_departamento
+, case departamento.cpf_gerente
+       when departamento.cpf_gerente then concat(f.primeiro_nome, " ",f.nome_meio, ". ",f.ultimo_nome)
+end as nome_gerente
+, case trabalha_em.numero_projeto
+       when trabalha_em.numero_projeto then concat("(Nº", trabalha_em.numero_projeto, ") ", projeto.nome_projeto, " (", projeto.local_projeto, ")")
+end as numero_nome_e_local_projeto
+, relatorio_4.salario_com_reajuste
+, trabalha_em.horas
+from trabalha_em
+inner join funcionario on trabalha_em.cpf_funcionario=funcionario.cpf
+inner join projeto on trabalha_em.numero_projeto=projeto.numero_projeto
+inner join departamento on projeto.numero_departamento=departamento.numero_departamento
+inner join funcionario as f on departamento.cpf_gerente=f.cpf
+left join relatorio_4 on concat(funcionario.primeiro_nome, " ",funcionario.nome_meio, ". ",funcionario.ultimo_nome)=relatorio_4.nome_completo_funcionario
+order by nome_completo_funcionario;
+drop view relatorio_4;
+
+
+
 
 
 
