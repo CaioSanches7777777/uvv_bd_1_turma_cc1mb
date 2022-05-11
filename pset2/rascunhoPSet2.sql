@@ -36,6 +36,7 @@ end as nome_gerente
 end as numero_nome_e_local_projeto
 , relatorio_4.salario_com_reajuste
 , trabalha_em.horas
+, concat("$", (trabalha_em.horas*50)) as valor_por_horas_trabalhadas
 from trabalha_em
 inner join funcionario on trabalha_em.cpf_funcionario=funcionario.cpf
 inner join projeto on trabalha_em.numero_projeto=projeto.numero_projeto
