@@ -51,6 +51,10 @@ drop view relatorio_4;
 
 
 
+--Calcular idade com EXTRACT(YEAR FROM AGE(funcionario.data_nascimento) AS idade
+
+
+
 
 /* ESBOÇO VÁLIDO DA PARTE DE GERENTES DA QUESTÃO 5
 select departamento.nome_departamento, funcionario.primeiro_nome as primeiro_nome, funcionario.nome_meio as nome_meio, funcionario.ultimo_nome as ultimo_nome
