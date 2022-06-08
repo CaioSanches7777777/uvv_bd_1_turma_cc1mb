@@ -1,4 +1,23 @@
 --rascunho
+
+/*Modelo simples baseado nos links no arquivo de texto no PSet3*/
+
+with recursive classificacao_P as (
+	select codigo, nome, codigo_pai
+	from classificacao
+	where codigo_pai is null
+	union
+	select cls.codigo, cls.nome, cls.codigo_pai
+	from classificacao as cls
+	inner join classificacao_P on classificacao_P.codigo = cls.codigo_pai
+	where cls.codigo_pai is not null)
+select *
+from classificacao_P 
+;
+
+
+--Tentativas
+
 with classificacoes as (
 	select codigo, nome, codigo_pai
 	from classificacao
