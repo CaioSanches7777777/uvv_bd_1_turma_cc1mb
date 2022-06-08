@@ -93,7 +93,7 @@ order by nome
 
 
 
---Mais Proximo
+--Muito Proximo mas errado
 with classificacoes as (
 	select codigo, nome, codigo_pai
 	from classificacao
@@ -129,5 +129,38 @@ select produtos.codigo, concat(classificacoes.nome, ' --> ', meio_termo.nome , '
 from produtos
 inner join meio_termo on meio_termo.codigo = produtos.codigo_pai
 inner join classificacoes on classificacoes.codigo = meio_termo.codigo_pai
+order by nome
+;
+
+--Mais Proximo
+
+with recursive classificacao_P as (
+	select codigo,
+	nome,
+	codigo_pai
+	from classificacao
+	where codigo_pai is null
+		union
+	select cls.codigo,
+	cls.nome,
+	cls.codigo_pai
+	from classificacao as cls
+	inner join classificacao_P on classificacao_P.codigo = cls.codigo_pai
+	where cls.codigo_pai is not null)
+select classificacao_P.codigo, 
+classificacao_P.nome, 
+classificacao_P.codigo_Pai
+from classificacao_P
+where codigo_Pai is null
+	union
+select cls.codigo, 
+case cls.nome
+	when cls.nome then concat(classificacao_P.nome, concat(' --> ', cls.nome, ' --> ',classificacao.nome))
+	end as nome,
+cls.codigo_Pai
+from classificacao_P
+inner join classificacao cls on cls.codigo_Pai = classificacao_P.codigo
+inner join classificacao on classificacao.codigo_Pai = cls.codigo
+left join classificacao clss on clss.codigo_Pai = classificacao.codigo
 order by nome
 ;
