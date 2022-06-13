@@ -35,7 +35,7 @@ cpf char(11) NOT NULL,
 data_nascimento date, 
 /*Essa linha cria a coluna data_nascimento da tabela funcionario, e pode ser preenchida com a data de nascimento do funcionario.*/
 
-endereco varchar(30), 
+endereco varchar(40), 
 /*Essa linha cria a coluna endereco da tabela funcionario, e pode ser preenchida com o endereço do funcionario.*/
 
 sexo char, 
