@@ -130,7 +130,7 @@ cpf_funcionario char(11) NOT NULL,
 numero_projeto int NOT NULL,
 /*Essa linha cria a coluna numero_projeto da tabela trabalha_em, e deve ser preenchida com o número do projeto no qual o funcionario está trabalhando.*/
 
-horas decimal(3,1) NOT NULL,
+horas decimal(3,1),
 /*Essa linha cria a coluna horas da tabela trabalha_em, e deve ser preenchida com o número de horas invastidas no projeto.*/
 
 PRIMARY KEY (cpf_funcionario, numero_projeto),
