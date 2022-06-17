@@ -1,14 +1,13 @@
 CREATE schema cerimonial AUTHORIZATION caio_s;
 
-
 CREATE TABLE cerimonial.enderecos (
-                codigo_endereco VARCHAR NOT NULL,
-                logradouro VARCHAR NOT NULL,
+                codigo_endereco VARCHAR(50) NOT NULL,
+                logradouro VARCHAR(100) NOT NULL,
                 numero INTEGER NOT NULL,
-                complemento VARCHAR,
+                complemento VARCHAR(100),
                 bairro VARCHAR(100) NOT NULL,
                 cidade VARCHAR(50) NOT NULL,
-                uf VARCHAR NOT NULL,
+                uf VARCHAR(2) NOT NULL,
                 cep INTEGER NOT NULL,
                 CONSTRAINT enderecos_pk PRIMARY KEY (codigo_endereco)
 );
@@ -24,8 +23,8 @@ COMMENT ON COLUMN cerimonial.enderecos.cep IS 'CEP do endereço.';
 
 
 CREATE TABLE cerimonial.garcons (
-                codigo_profissional VARCHAR NOT NULL,
-                tempo_experiencia VARCHAR NOT NULL,
+                codigo_profissional VARCHAR(50) NOT NULL,
+                tempo_experiencia VARCHAR(100) NOT NULL,
                 CONSTRAINT garcons_pk PRIMARY KEY (codigo_profissional)
 );
 COMMENT ON TABLE cerimonial.garcons IS 'Tabela que armazena dados sobre os garçons.';
@@ -34,9 +33,9 @@ COMMENT ON COLUMN cerimonial.garcons.tempo_experiencia IS 'Tempo de experiência
 
 
 CREATE TABLE cerimonial.musicos (
-                codigo_profissional VARCHAR NOT NULL,
-                desc_habilidades VARCHAR NOT NULL,
-                formacao VARCHAR NOT NULL,
+                codigo_profissional VARCHAR(50) NOT NULL,
+                desc_habilidades VARCHAR(300) NOT NULL,
+                formacao VARCHAR(200) NOT NULL,
                 CONSTRAINT musicos_pk PRIMARY KEY (codigo_profissional)
 );
 COMMENT ON TABLE cerimonial.musicos IS 'Tabela que armazena dados sobre os músicos.';
@@ -46,9 +45,9 @@ COMMENT ON COLUMN cerimonial.musicos.formacao IS 'Tipo de formação do profissi
 
 
 CREATE TABLE cerimonial.cozinheiros (
-                codigo_profissional VARCHAR NOT NULL,
-                formacao VARCHAR NOT NULL,
-                desc_habilidades VARCHAR NOT NULL,
+                codigo_profissional VARCHAR(50) NOT NULL,
+                formacao VARCHAR(200) NOT NULL,
+                desc_habilidades VARCHAR(300) NOT NULL,
                 CONSTRAINT cozinheiros_pk PRIMARY KEY (codigo_profissional)
 );
 COMMENT ON TABLE cerimonial.cozinheiros IS 'Tabela que armazena dados sobre os cozinheiros.';
@@ -58,40 +57,38 @@ COMMENT ON COLUMN cerimonial.cozinheiros.desc_habilidades IS 'Descrição das ha
 
 
 CREATE TABLE cerimonial.profissionais (
-                codigo_profissional VARCHAR NOT NULL,
+                codigo_profissional VARCHAR(50) NOT NULL,
                 nome_profissional VARCHAR(100) NOT NULL,
-                endereco VARCHAR NOT NULL,
+                codigo_endereco VARCHAR(50) NOT NULL,
                 telefones NUMERIC(9) NOT NULL,
                 CONSTRAINT profissionais_pk PRIMARY KEY (codigo_profissional)
 );
 COMMENT ON TABLE cerimonial.profissionais IS 'Tabela que armazena dados sobre os proficionais que trabalham nos eventos.';
 COMMENT ON COLUMN cerimonial.profissionais.codigo_profissional IS 'Código do profissional que trabalha no evento.';
 COMMENT ON COLUMN cerimonial.profissionais.nome_profissional IS 'Nome do profissional.';
-COMMENT ON COLUMN cerimonial.profissionais.endereco IS 'Endereço do profissional.';
+COMMENT ON COLUMN cerimonial.profissionais.codigo_endereco IS 'Código do endereço do profissional.';
 COMMENT ON COLUMN cerimonial.profissionais.telefones IS 'Telefones do profissional.';
 
 
 CREATE TABLE cerimonial.clientes (
-                codigo_cliente VARCHAR NOT NULL,
-                endereco VARCHAR NOT NULL,
+                codigo_cliente VARCHAR(50) NOT NULL,
+                codigo_endereco VARCHAR(50) NOT NULL,
                 nome_cliente VARCHAR(100) NOT NULL,
                 telefones NUMERIC(9) NOT NULL,
-                email VARCHAR NOT NULL,
-                codigo_endereco VARCHAR NOT NULL,
+                email VARCHAR(30) NOT NULL,
                 CONSTRAINT clientes_pk PRIMARY KEY (codigo_cliente)
 );
 COMMENT ON TABLE cerimonial.clientes IS 'Tabela que armazena dados sobre os clientes que contrataram/alugaram o cerimonial.';
 COMMENT ON COLUMN cerimonial.clientes.codigo_cliente IS 'Código do cliente.';
-COMMENT ON COLUMN cerimonial.clientes.endereco IS 'Endereço do cliente.';
+COMMENT ON COLUMN cerimonial.clientes.codigo_endereco IS 'Código do endereço do cliente.';
 COMMENT ON COLUMN cerimonial.clientes.nome_cliente IS 'Nome do cliente.';
 COMMENT ON COLUMN cerimonial.clientes.telefones IS 'Telefones do cliente.';
 COMMENT ON COLUMN cerimonial.clientes.email IS 'E-mail do cliente.';
-COMMENT ON COLUMN cerimonial.clientes.codigo_endereco IS 'Codigo do endereço';
 
 
 CREATE TABLE cerimonial.eventos (
-                codigo_evento VARCHAR NOT NULL,
-                codigo_cliente VARCHAR NOT NULL,
+                codigo_evento VARCHAR(50) NOT NULL,
+                codigo_cliente VARCHAR(50) NOT NULL,
                 nome VARCHAR(50) NOT NULL,
                 motivo VARCHAR(200) NOT NULL,
                 data_inicio DATE NOT NULL,
@@ -99,7 +96,7 @@ CREATE TABLE cerimonial.eventos (
                 hora_inicio TIME NOT NULL,
                 hora_fim TIME NOT NULL,
                 valor NUMERIC(10,2) NOT NULL,
-                forma_pagamento VARCHAR NOT NULL,
+                forma_pagamento VARCHAR(20) NOT NULL,
                 CONSTRAINT eventos_pk PRIMARY KEY (codigo_evento)
 );
 COMMENT ON TABLE cerimonial.eventos IS 'Tabela que armazena dados sobre os eventos realizados no cerimonial.';
@@ -116,9 +113,9 @@ COMMENT ON COLUMN cerimonial.eventos.forma_pagamento IS 'Forma de pagamento pelo
 
 
 CREATE TABLE cerimonial.equipes (
-                codigo_profissional VARCHAR NOT NULL,
+                codigo_profissional VARCHAR(50) NOT NULL,
                 data_inicio DATE NOT NULL,
-                codigo_evento VARCHAR NOT NULL,
+                codigo_evento VARCHAR(50) NOT NULL,
                 data_fim DATE,
                 CONSTRAINT equipes_pk PRIMARY KEY (codigo_profissional, data_inicio)
 );
@@ -130,7 +127,7 @@ COMMENT ON COLUMN cerimonial.equipes.data_fim IS 'Data do término da atuação 
 
 
 CREATE TABLE cerimonial.convidados (
-                codigo_convidado VARCHAR NOT NULL,
+                codigo_convidado VARCHAR(50) NOT NULL,
                 nome VARCHAR(50) NOT NULL,
                 data_nascimento DATE NOT NULL,
                 sexo CHAR(1) NOT NULL,
@@ -146,7 +143,7 @@ COMMENT ON COLUMN cerimonial.convidados.telefones IS 'Telefones do convidado.';
 
 
 CREATE TABLE cerimonial.telefones (
-                codigo_dono VARCHAR NOT NULL,
+                codigo_dono VARCHAR(50) NOT NULL,
                 telefone NUMERIC(9) NOT NULL
 );
 COMMENT ON TABLE cerimonial.telefones IS 'Tabela que armazena os telefones dos envolvidos(clientes, convidados, profissionais) no evento.';
@@ -155,11 +152,11 @@ COMMENT ON COLUMN cerimonial.telefones.telefone IS 'Telefone.';
 
 
 CREATE TABLE cerimonial.servicos (
-                codigo_servico VARCHAR NOT NULL,
-                descricao VARCHAR NOT NULL,
+                codigo_servico VARCHAR(50) NOT NULL,
+                descricao VARCHAR(400) NOT NULL,
                 nome_servico VARCHAR(200) NOT NULL,
                 valor NUMERIC(9,2) NOT NULL,
-                codigo_evento VARCHAR NOT NULL,
+                codigo_evento VARCHAR(50) NOT NULL,
                 CONSTRAINT servicos_pk PRIMARY KEY (codigo_servico)
 );
 COMMENT ON TABLE cerimonial.servicos IS 'Tabela que armazena dados sobre os serviços.';
@@ -171,10 +168,10 @@ COMMENT ON COLUMN cerimonial.servicos.codigo_evento IS 'Código do evento.';
 
 
 CREATE TABLE cerimonial.consumos (
-                codigo_evento VARCHAR NOT NULL,
+                codigo_evento VARCHAR(50) NOT NULL,
                 quant_contratada INTEGER NOT NULL,
                 quant_consumida INTEGER,
-                codigo_servico VARCHAR NOT NULL,
+                codigo_servico VARCHAR(50) NOT NULL,
                 CONSTRAINT consumos_pk PRIMARY KEY (codigo_evento)
 );
 COMMENT ON TABLE cerimonial.consumos IS 'Tabela que armazena dados sobre os consumos do evento.';
@@ -185,7 +182,7 @@ COMMENT ON COLUMN cerimonial.consumos.codigo_servico IS 'Código dos serviços d
 
 
 CREATE TABLE cerimonial.bebidas (
-                codigo_servico VARCHAR NOT NULL,
+                codigo_servico VARCHAR(50) NOT NULL,
                 nome_bebida VARCHAR(50) NOT NULL,
                 teor_alcoolico NUMERIC(3,3) NOT NULL,
                 CONSTRAINT bebidas_pk PRIMARY KEY (codigo_servico)
@@ -193,11 +190,11 @@ CREATE TABLE cerimonial.bebidas (
 COMMENT ON TABLE cerimonial.bebidas IS 'Tabela que armazena dados sobre as bebidas oferecidas nos eventos.';
 COMMENT ON COLUMN cerimonial.bebidas.codigo_servico IS 'Código dos serviços de bebidas.';
 COMMENT ON COLUMN cerimonial.bebidas.nome_bebida IS 'Nome da bebida oferecida nos eventos.';
-COMMENT ON COLUMN cerimonial.bebidas.teor_alcoolico IS 'Teor alcoólico das respectivas bebidas oferecidas nos eventos.';
+COMMENT ON COLUMN cerimonial.bebidas.teor_alcoolico IS 's.';
 
 
 CREATE TABLE cerimonial.comidas (
-                codigo_servico VARCHAR NOT NULL,
+                codigo_servico VARCHAR(50) NOT NULL,
                 nome_comida VARCHAR(50) NOT NULL,
                 teor_calorico NUMERIC(3,3) NOT NULL,
                 CONSTRAINT comidas_pk PRIMARY KEY (codigo_servico)
@@ -209,14 +206,14 @@ COMMENT ON COLUMN cerimonial.comidas.teor_calorico IS 'Teor calórico das respec
 
 
 ALTER TABLE cerimonial.profissionais ADD CONSTRAINT enderecos_profissionais_fk
-FOREIGN KEY (endereco)
+FOREIGN KEY (codigo_endereco)
 REFERENCES cerimonial.enderecos (codigo_endereco)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE cerimonial.clientes ADD CONSTRAINT enderecos_clientes_fk
-FOREIGN KEY (endereco)
+FOREIGN KEY (codigo_endereco)
 REFERENCES cerimonial.enderecos (codigo_endereco)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
