@@ -55,18 +55,30 @@ COMMENT ON COLUMN cerimonial.cozinheiros.formacao IS 'Tipo de formação do prof
 COMMENT ON COLUMN cerimonial.cozinheiros.desc_habilidades IS 'Descrição das habilidades do profissional.';
 
 
-CREATE TABLE cerimonial.profissionais (
-                codigo_profissional VARCHAR(50) NOT NULL,
-                nome_profissional VARCHAR(100) NOT NULL,
-                codigo_endereco VARCHAR(50) NOT NULL,
+CREATE TABLE cerimonial.convidados (
+                codigo_convidado VARCHAR(50) NOT NULL,
+                nome VARCHAR(50) NOT NULL,
+                data_nascimento DATE NOT NULL,
+                sexo CHAR(1) NOT NULL,
                 telefones NUMERIC(9) NOT NULL,
-                CONSTRAINT profissionais_pk PRIMARY KEY (codigo_profissional)
+                CONSTRAINT convidados_pk PRIMARY KEY (codigo_convidado)
 );
-COMMENT ON TABLE cerimonial.profissionais IS 'Tabela que armazena dados sobre os proficionais que trabalham nos eventos.';
-COMMENT ON COLUMN cerimonial.profissionais.codigo_profissional IS 'Código do profissional que trabalha no evento.';
-COMMENT ON COLUMN cerimonial.profissionais.nome_profissional IS 'Nome do profissional.';
-COMMENT ON COLUMN cerimonial.profissionais.codigo_endereco IS 'Código do endereço do profissional.';
-COMMENT ON COLUMN cerimonial.profissionais.telefones IS 'Telefones do profissional.';
+COMMENT ON TABLE cerimonial.convidados IS 'Tabela que armazena dados sobre os convidados.';
+COMMENT ON COLUMN cerimonial.convidados.codigo_convidado IS 'Código do convidado.';
+COMMENT ON COLUMN cerimonial.convidados.nome IS 'Nome do convidado.';
+COMMENT ON COLUMN cerimonial.convidados.data_nascimento IS 'Data de nascimento do convidado.';
+COMMENT ON COLUMN cerimonial.convidados.sexo IS 'Sexo do convidado.';
+COMMENT ON COLUMN cerimonial.convidados.telefones IS 'Telefones do convidado.';
+
+
+CREATE TABLE cerimonial.telefones (
+                codigo_dono VARCHAR(50) NOT NULL,
+                telefone NUMERIC(9) NOT NULL,
+                CONSTRAINT telefones_pk PRIMARY KEY (codigo_dono)
+);
+COMMENT ON TABLE cerimonial.telefones IS 'Tabela que armazena os telefones dos envolvidos(clientes, convidados, profissionais) no evento.';
+COMMENT ON COLUMN cerimonial.telefones.codigo_dono IS 'Código do dono do telefone.';
+COMMENT ON COLUMN cerimonial.telefones.telefone IS 'Telefone.';
 
 
 CREATE TABLE cerimonial.clientes (
@@ -111,6 +123,20 @@ COMMENT ON COLUMN cerimonial.eventos.valor IS 'Valor do evento.';
 COMMENT ON COLUMN cerimonial.eventos.forma_pagamento IS 'Forma de pagamento pelo evento.';
 
 
+CREATE TABLE cerimonial.profissionais (
+                codigo_profissional VARCHAR(50) NOT NULL,
+                nome_profissional VARCHAR(100) NOT NULL,
+                codigo_endereco VARCHAR(50) NOT NULL,
+                telefones NUMERIC(9) NOT NULL,
+                CONSTRAINT profissionais_pk PRIMARY KEY (codigo_profissional)
+);
+COMMENT ON TABLE cerimonial.profissionais IS 'Tabela que armazena dados sobre os proficionais que trabalham nos eventos.';
+COMMENT ON COLUMN cerimonial.profissionais.codigo_profissional IS 'Código do profissional que trabalha no evento.';
+COMMENT ON COLUMN cerimonial.profissionais.nome_profissional IS 'Nome do profissional.';
+COMMENT ON COLUMN cerimonial.profissionais.codigo_endereco IS 'Código do endereço do profissional.';
+COMMENT ON COLUMN cerimonial.profissionais.telefones IS 'Telefones do profissional.';
+
+
 CREATE TABLE cerimonial.equipes (
                 codigo_profissional VARCHAR(50) NOT NULL,
                 data_inicio DATE NOT NULL,
@@ -123,31 +149,6 @@ COMMENT ON COLUMN cerimonial.equipes.codigo_profissional IS 'Código do profissi
 COMMENT ON COLUMN cerimonial.equipes.data_inicio IS 'Data de contratação das equipes para determinado evento.';
 COMMENT ON COLUMN cerimonial.equipes.codigo_evento IS 'Código do evento.';
 COMMENT ON COLUMN cerimonial.equipes.data_fim IS 'Data do término da atuação das equipes no evento.';
-
-
-CREATE TABLE cerimonial.convidados (
-                codigo_convidado VARCHAR(50) NOT NULL,
-                nome VARCHAR(50) NOT NULL,
-                data_nascimento DATE NOT NULL,
-                sexo CHAR(1) NOT NULL,
-                telefones NUMERIC(9) NOT NULL,
-                CONSTRAINT convidados_pk PRIMARY KEY (codigo_convidado)
-);
-COMMENT ON TABLE cerimonial.convidados IS 'Tabela que armazena dados sobre os convidados.';
-COMMENT ON COLUMN cerimonial.convidados.codigo_convidado IS 'Código do convidado.';
-COMMENT ON COLUMN cerimonial.convidados.nome IS 'Nome do convidado.';
-COMMENT ON COLUMN cerimonial.convidados.data_nascimento IS 'Data de nascimento do convidado.';
-COMMENT ON COLUMN cerimonial.convidados.sexo IS 'Sexo do convidado.';
-COMMENT ON COLUMN cerimonial.convidados.telefones IS 'Telefones do convidado.';
-
-
-CREATE TABLE cerimonial.telefones (
-                codigo_dono VARCHAR(50) NOT NULL,
-                telefone NUMERIC(9) NOT NULL
-);
-COMMENT ON TABLE cerimonial.telefones IS 'Tabela que armazena os telefones dos envolvidos(clientes, convidados, profissionais) no evento.';
-COMMENT ON COLUMN cerimonial.telefones.codigo_dono IS 'Código do dono do telefone.';
-COMMENT ON COLUMN cerimonial.telefones.telefone IS 'Telefone.';
 
 
 CREATE TABLE cerimonial.servicos (
@@ -239,16 +240,30 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE cerimonial.equipes ADD CONSTRAINT profissionais_equipes_fk
-FOREIGN KEY (codigo_profissional)
-REFERENCES cerimonial.profissionais (codigo_profissional)
+ALTER TABLE cerimonial.telefones ADD CONSTRAINT convidados_telefones_fk
+FOREIGN KEY (codigo_dono)
+REFERENCES cerimonial.convidados (codigo_convidado)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE cerimonial.telefones ADD CONSTRAINT profissionais_telefones_fk
-FOREIGN KEY (codigo_dono)
-REFERENCES cerimonial.profissionais (codigo_profissional)
+ALTER TABLE cerimonial.convidados ADD CONSTRAINT telefones_convidados_fk
+FOREIGN KEY (codigo_convidado)
+REFERENCES cerimonial.telefones (codigo_dono)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE cerimonial.profissionais ADD CONSTRAINT telefones_profissionais_fk
+FOREIGN KEY (codigo_profissional)
+REFERENCES cerimonial.telefones (codigo_dono)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE cerimonial.clientes ADD CONSTRAINT telefones_clientes_fk
+FOREIGN KEY (codigo_cliente)
+REFERENCES cerimonial.telefones (codigo_dono)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
@@ -281,9 +296,16 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE cerimonial.telefones ADD CONSTRAINT convidados_telefones_fk
+ALTER TABLE cerimonial.equipes ADD CONSTRAINT profissionais_equipes_fk
+FOREIGN KEY (codigo_profissional)
+REFERENCES cerimonial.profissionais (codigo_profissional)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE cerimonial.telefones ADD CONSTRAINT profissionais_telefones_fk
 FOREIGN KEY (codigo_dono)
-REFERENCES cerimonial.convidados (codigo_convidado)
+REFERENCES cerimonial.profissionais (codigo_profissional)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
