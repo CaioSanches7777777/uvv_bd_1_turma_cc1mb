@@ -11,23 +11,23 @@ CREATE TABLE enderecos (
                 PRIMARY KEY (codigo_endereco)
 );
 
-ALTER TABLE enderecos COMMENT 'Tabela que armazena os endereços.';
+ALTER TABLE enderecos COMMENT 'Tabela que armazena os endereÃ§os.';
 
-ALTER TABLE enderecos MODIFY COLUMN codigo_endereco VARCHAR(50) COMMENT 'Codigo do endereço';
+ALTER TABLE enderecos MODIFY COLUMN codigo_endereco VARCHAR(50) COMMENT 'Codigo do endereÃ§o';
 
-ALTER TABLE enderecos MODIFY COLUMN logradouro VARCHAR(100) COMMENT 'Logradouro do endereço.';
+ALTER TABLE enderecos MODIFY COLUMN logradouro VARCHAR(100) COMMENT 'Logradouro do endereÃ§o.';
 
-ALTER TABLE enderecos MODIFY COLUMN numero INTEGER COMMENT 'Número do endereço.';
+ALTER TABLE enderecos MODIFY COLUMN numero INTEGER COMMENT 'NÃºmero do endereÃ§o.';
 
-ALTER TABLE enderecos MODIFY COLUMN complemento VARCHAR(100) COMMENT 'Complemento do endereço.';
+ALTER TABLE enderecos MODIFY COLUMN complemento VARCHAR(100) COMMENT 'Complemento do endereÃ§o.';
 
-ALTER TABLE enderecos MODIFY COLUMN bairro VARCHAR(100) COMMENT 'Bairro do enereço.';
+ALTER TABLE enderecos MODIFY COLUMN bairro VARCHAR(100) COMMENT 'Bairro do enereÃ§o.';
 
-ALTER TABLE enderecos MODIFY COLUMN cidade VARCHAR(50) COMMENT 'Cidade do endereço.';
+ALTER TABLE enderecos MODIFY COLUMN cidade VARCHAR(50) COMMENT 'Cidade do endereÃ§o.';
 
-ALTER TABLE enderecos MODIFY COLUMN uf VARCHAR(2) COMMENT 'UF(Únidade Federetiva) do endereço.';
+ALTER TABLE enderecos MODIFY COLUMN uf VARCHAR(2) COMMENT 'UF(Ãšnidade Federetiva) do endereÃ§o.';
 
-ALTER TABLE enderecos MODIFY COLUMN cep INTEGER COMMENT 'CEP do endereço.';
+ALTER TABLE enderecos MODIFY COLUMN cep INTEGER COMMENT 'CEP do endereÃ§o.';
 
 
 CREATE TABLE garcons (
@@ -36,11 +36,11 @@ CREATE TABLE garcons (
                 PRIMARY KEY (codigo_profissional)
 );
 
-ALTER TABLE garcons COMMENT 'Tabela que armazena dados sobre os garçons.';
+ALTER TABLE garcons COMMENT 'Tabela que armazena dados sobre os garÃ§ons.';
 
-ALTER TABLE garcons MODIFY COLUMN codigo_profissional VARCHAR(50) COMMENT 'Código do profissional que trabalha no evento.';
+ALTER TABLE garcons MODIFY COLUMN codigo_profissional VARCHAR(50) COMMENT 'CÃ³digo do profissional que trabalha no evento.';
 
-ALTER TABLE garcons MODIFY COLUMN tempo_experiencia VARCHAR(100) COMMENT 'Tempo de experiência do profissional atuando na profissão.';
+ALTER TABLE garcons MODIFY COLUMN tempo_experiencia VARCHAR(100) COMMENT 'Tempo de experiÃªncia do profissional atuando na profissÃ£o.';
 
 
 CREATE TABLE musicos (
@@ -50,13 +50,13 @@ CREATE TABLE musicos (
                 PRIMARY KEY (codigo_profissional)
 );
 
-ALTER TABLE musicos COMMENT 'Tabela que armazena dados sobre os músicos.';
+ALTER TABLE musicos COMMENT 'Tabela que armazena dados sobre os mÃºsicos.';
 
-ALTER TABLE musicos MODIFY COLUMN codigo_profissional VARCHAR(50) COMMENT 'Código do profissional que trabalha no evento.';
+ALTER TABLE musicos MODIFY COLUMN codigo_profissional VARCHAR(50) COMMENT 'CÃ³digo do profissional que trabalha no evento.';
 
-ALTER TABLE musicos MODIFY COLUMN desc_habilidades VARCHAR(300) COMMENT 'Descrição das habilidades do profissional.';
+ALTER TABLE musicos MODIFY COLUMN desc_habilidades VARCHAR(300) COMMENT 'DescriÃ§Ã£o das habilidades do profissional.';
 
-ALTER TABLE musicos MODIFY COLUMN formacao VARCHAR(200) COMMENT 'Tipo de formação do profissional.';
+ALTER TABLE musicos MODIFY COLUMN formacao VARCHAR(200) COMMENT 'Tipo de formaÃ§Ã£o do profissional.';
 
 
 CREATE TABLE cozinheiros (
@@ -68,30 +68,46 @@ CREATE TABLE cozinheiros (
 
 ALTER TABLE cozinheiros COMMENT 'Tabela que armazena dados sobre os cozinheiros.';
 
-ALTER TABLE cozinheiros MODIFY COLUMN codigo_profissional VARCHAR(50) COMMENT 'Código do profissional que trabalha no evento.';
+ALTER TABLE cozinheiros MODIFY COLUMN codigo_profissional VARCHAR(50) COMMENT 'CÃ³digo do profissional que trabalha no evento.';
 
-ALTER TABLE cozinheiros MODIFY COLUMN formacao VARCHAR(200) COMMENT 'Tipo de formação do profissional.';
+ALTER TABLE cozinheiros MODIFY COLUMN formacao VARCHAR(200) COMMENT 'Tipo de formaÃ§Ã£o do profissional.';
 
-ALTER TABLE cozinheiros MODIFY COLUMN desc_habilidades VARCHAR(300) COMMENT 'Descrição das habilidades do profissional.';
+ALTER TABLE cozinheiros MODIFY COLUMN desc_habilidades VARCHAR(300) COMMENT 'DescriÃ§Ã£o das habilidades do profissional.';
 
 
-CREATE TABLE profissionais (
-                codigo_profissional VARCHAR(50) NOT NULL,
-                nome_profissional VARCHAR(100) NOT NULL,
-                codigo_endereco VARCHAR(50) NOT NULL,
+CREATE TABLE convidados (
+                codigo_convidado VARCHAR(50) NOT NULL,
+                nome VARCHAR(50) NOT NULL,
+                data_nascimento DATE NOT NULL,
+                sexo CHAR(1) NOT NULL,
                 telefones NUMERIC(9) NOT NULL,
-                PRIMARY KEY (codigo_profissional)
+                PRIMARY KEY (codigo_convidado)
 );
 
-ALTER TABLE profissionais COMMENT 'Tabela que armazena dados sobre os proficionais que trabalham nos eventos.';
+ALTER TABLE convidados COMMENT 'Tabela que armazena dados sobre os convidados.';
 
-ALTER TABLE profissionais MODIFY COLUMN codigo_profissional VARCHAR(50) COMMENT 'Código do profissional que trabalha no evento.';
+ALTER TABLE convidados MODIFY COLUMN codigo_convidado VARCHAR(50) COMMENT 'CÃ³digo do convidado.';
 
-ALTER TABLE profissionais MODIFY COLUMN nome_profissional VARCHAR(100) COMMENT 'Nome do profissional.';
+ALTER TABLE convidados MODIFY COLUMN nome VARCHAR(50) COMMENT 'Nome do convidado.';
 
-ALTER TABLE profissionais MODIFY COLUMN codigo_endereco VARCHAR(50) COMMENT 'Código do endereço do profissional.';
+ALTER TABLE convidados MODIFY COLUMN data_nascimento DATE COMMENT 'Data de nascimento do convidado.';
 
-ALTER TABLE profissionais MODIFY COLUMN telefones NUMERIC(9) COMMENT 'Telefones do profissional.';
+ALTER TABLE convidados MODIFY COLUMN sexo CHAR(1) COMMENT 'Sexo do convidado.';
+
+ALTER TABLE convidados MODIFY COLUMN telefones NUMERIC(9) COMMENT 'Telefones do convidado.';
+
+
+CREATE TABLE telefones (
+                codigo_dono VARCHAR(50) NOT NULL,
+                telefone NUMERIC(9) NOT NULL,
+                PRIMARY KEY (codigo_dono)
+);
+
+ALTER TABLE telefones COMMENT 'Tabela que armazena os telefones dos envolvidos(clientes, convidados, profissionais) no evento.';
+
+ALTER TABLE telefones MODIFY COLUMN codigo_dono VARCHAR(50) COMMENT 'CÃ³digo do dono do telefone.';
+
+ALTER TABLE telefones MODIFY COLUMN telefone NUMERIC(9) COMMENT 'Telefone.';
 
 
 CREATE TABLE clientes (
@@ -105,9 +121,9 @@ CREATE TABLE clientes (
 
 ALTER TABLE clientes COMMENT 'Tabela que armazena dados sobre os clientes que contrataram/alugaram o cerimonial.';
 
-ALTER TABLE clientes MODIFY COLUMN codigo_cliente VARCHAR(50) COMMENT 'Código do cliente.';
+ALTER TABLE clientes MODIFY COLUMN codigo_cliente VARCHAR(50) COMMENT 'CÃ³digo do cliente.';
 
-ALTER TABLE clientes MODIFY COLUMN codigo_endereco VARCHAR(50) COMMENT 'Código do endereço do cliente.';
+ALTER TABLE clientes MODIFY COLUMN codigo_endereco VARCHAR(50) COMMENT 'CÃ³digo do endereÃ§o do cliente.';
 
 ALTER TABLE clientes MODIFY COLUMN nome_cliente VARCHAR(100) COMMENT 'Nome do cliente.';
 
@@ -132,25 +148,44 @@ CREATE TABLE eventos (
 
 ALTER TABLE eventos COMMENT 'Tabela que armazena dados sobre os eventos realizados no cerimonial.';
 
-ALTER TABLE eventos MODIFY COLUMN codigo_evento VARCHAR(50) COMMENT 'Código do evento.';
+ALTER TABLE eventos MODIFY COLUMN codigo_evento VARCHAR(50) COMMENT 'CÃ³digo do evento.';
 
-ALTER TABLE eventos MODIFY COLUMN codigo_cliente VARCHAR(50) COMMENT 'Código do cliente(contratante).';
+ALTER TABLE eventos MODIFY COLUMN codigo_cliente VARCHAR(50) COMMENT 'CÃ³digo do cliente(contratante).';
 
 ALTER TABLE eventos MODIFY COLUMN nome VARCHAR(50) COMMENT 'Nome do evento';
 
 ALTER TABLE eventos MODIFY COLUMN motivo VARCHAR(200) COMMENT 'Motivo do evento.';
 
-ALTER TABLE eventos MODIFY COLUMN data_inicio DATE COMMENT 'Data de início do evento.';
+ALTER TABLE eventos MODIFY COLUMN data_inicio DATE COMMENT 'Data de inÃ­cio do evento.';
 
 ALTER TABLE eventos MODIFY COLUMN data_fim DATE COMMENT 'Data do fim do evento.';
 
-ALTER TABLE eventos MODIFY COLUMN hora_inicio TIME COMMENT 'Hora de início do evento.';
+ALTER TABLE eventos MODIFY COLUMN hora_inicio TIME COMMENT 'Hora de inÃ­cio do evento.';
 
 ALTER TABLE eventos MODIFY COLUMN hora_fim TIME COMMENT 'Hora do fim do evento.';
 
 ALTER TABLE eventos MODIFY COLUMN valor DECIMAL(10, 2) COMMENT 'Valor do evento.';
 
 ALTER TABLE eventos MODIFY COLUMN forma_pagamento VARCHAR(20) COMMENT 'Forma de pagamento pelo evento.';
+
+
+CREATE TABLE profissionais (
+                codigo_profissional VARCHAR(50) NOT NULL,
+                nome_profissional VARCHAR(100) NOT NULL,
+                codigo_endereco VARCHAR(50) NOT NULL,
+                telefones NUMERIC(9) NOT NULL,
+                PRIMARY KEY (codigo_profissional)
+);
+
+ALTER TABLE profissionais COMMENT 'Tabela que armazena dados sobre os proficionais que trabalham nos eventos.';
+
+ALTER TABLE profissionais MODIFY COLUMN codigo_profissional VARCHAR(50) COMMENT 'CÃ³digo do profissional que trabalha no evento.';
+
+ALTER TABLE profissionais MODIFY COLUMN nome_profissional VARCHAR(100) COMMENT 'Nome do profissional.';
+
+ALTER TABLE profissionais MODIFY COLUMN codigo_endereco VARCHAR(50) COMMENT 'CÃ³digo do endereÃ§o do profissional.';
+
+ALTER TABLE profissionais MODIFY COLUMN telefones NUMERIC(9) COMMENT 'Telefones do profissional.';
 
 
 CREATE TABLE equipes (
@@ -163,47 +198,13 @@ CREATE TABLE equipes (
 
 ALTER TABLE equipes COMMENT 'Tabela que armazena dados sobre as equipes que atuam no evento.';
 
-ALTER TABLE equipes MODIFY COLUMN codigo_profissional VARCHAR(50) COMMENT 'Código do profissional que trabalha no evento.';
+ALTER TABLE equipes MODIFY COLUMN codigo_profissional VARCHAR(50) COMMENT 'CÃ³digo do profissional que trabalha no evento.';
 
-ALTER TABLE equipes MODIFY COLUMN data_inicio DATE COMMENT 'Data de contratação das equipes para determinado evento.';
+ALTER TABLE equipes MODIFY COLUMN data_inicio DATE COMMENT 'Data de contrataÃ§Ã£o das equipes para determinado evento.';
 
-ALTER TABLE equipes MODIFY COLUMN codigo_evento VARCHAR(50) COMMENT 'Código do evento.';
+ALTER TABLE equipes MODIFY COLUMN codigo_evento VARCHAR(50) COMMENT 'CÃ³digo do evento.';
 
-ALTER TABLE equipes MODIFY COLUMN data_fim DATE COMMENT 'Data do término da atuação das equipes no evento.';
-
-
-CREATE TABLE convidados (
-                codigo_convidado VARCHAR(50) NOT NULL,
-                nome VARCHAR(50) NOT NULL,
-                data_nascimento DATE NOT NULL,
-                sexo CHAR(1) NOT NULL,
-                telefones NUMERIC(9) NOT NULL,
-                PRIMARY KEY (codigo_convidado)
-);
-
-ALTER TABLE convidados COMMENT 'Tabela que armazena dados sobre os convidados.';
-
-ALTER TABLE convidados MODIFY COLUMN codigo_convidado VARCHAR(50) COMMENT 'Código do convidado.';
-
-ALTER TABLE convidados MODIFY COLUMN nome VARCHAR(50) COMMENT 'Nome do convidado.';
-
-ALTER TABLE convidados MODIFY COLUMN data_nascimento DATE COMMENT 'Data de nascimento do convidado.';
-
-ALTER TABLE convidados MODIFY COLUMN sexo CHAR(1) COMMENT 'Sexo do convidado.';
-
-ALTER TABLE convidados MODIFY COLUMN telefones NUMERIC(9) COMMENT 'Telefones do convidado.';
-
-
-CREATE TABLE telefones (
-                codigo_dono VARCHAR(50) NOT NULL,
-                telefone NUMERIC(9) NOT NULL
-);
-
-ALTER TABLE telefones COMMENT 'Tabela que armazena os telefones dos envolvidos(clientes, convidados, profissionais) no evento.';
-
-ALTER TABLE telefones MODIFY COLUMN codigo_dono VARCHAR(50) COMMENT 'Código do dono do telefone.';
-
-ALTER TABLE telefones MODIFY COLUMN telefone NUMERIC(9) COMMENT 'Telefone.';
+ALTER TABLE equipes MODIFY COLUMN data_fim DATE COMMENT 'Data do tÃ©rmino da atuaÃ§Ã£o das equipes no evento.';
 
 
 CREATE TABLE servicos (
@@ -215,17 +216,17 @@ CREATE TABLE servicos (
                 PRIMARY KEY (codigo_servico)
 );
 
-ALTER TABLE servicos COMMENT 'Tabela que armazena dados sobre os serviços.';
+ALTER TABLE servicos COMMENT 'Tabela que armazena dados sobre os serviÃ§os.';
 
-ALTER TABLE servicos MODIFY COLUMN codigo_servico VARCHAR(50) COMMENT 'Código dos serviços do evento (alimentícios).';
+ALTER TABLE servicos MODIFY COLUMN codigo_servico VARCHAR(50) COMMENT 'CÃ³digo dos serviÃ§os do evento (alimentÃ­cios).';
 
-ALTER TABLE servicos MODIFY COLUMN descricao VARCHAR(400) COMMENT 'Descrição dos serviços oferecidos nos eventos.';
+ALTER TABLE servicos MODIFY COLUMN descricao VARCHAR(400) COMMENT 'DescriÃ§Ã£o dos serviÃ§os oferecidos nos eventos.';
 
-ALTER TABLE servicos MODIFY COLUMN nome_servico VARCHAR(200) COMMENT 'Nome do serviço do evento.';
+ALTER TABLE servicos MODIFY COLUMN nome_servico VARCHAR(200) COMMENT 'Nome do serviÃ§o do evento.';
 
-ALTER TABLE servicos MODIFY COLUMN valor DECIMAL(9, 2) COMMENT 'Valor de determinado serviço.';
+ALTER TABLE servicos MODIFY COLUMN valor DECIMAL(9, 2) COMMENT 'Valor de determinado serviÃ§o.';
 
-ALTER TABLE servicos MODIFY COLUMN codigo_evento VARCHAR(50) COMMENT 'Código do evento.';
+ALTER TABLE servicos MODIFY COLUMN codigo_evento VARCHAR(50) COMMENT 'CÃ³digo do evento.';
 
 
 CREATE TABLE consumos (
@@ -238,13 +239,13 @@ CREATE TABLE consumos (
 
 ALTER TABLE consumos COMMENT 'Tabela que armazena dados sobre os consumos do evento.';
 
-ALTER TABLE consumos MODIFY COLUMN codigo_evento VARCHAR(50) COMMENT 'Código do evento.';
+ALTER TABLE consumos MODIFY COLUMN codigo_evento VARCHAR(50) COMMENT 'CÃ³digo do evento.';
 
 ALTER TABLE consumos MODIFY COLUMN quant_contratada INTEGER COMMENT 'Quantidade de consumos contratados para o evento.';
 
 ALTER TABLE consumos MODIFY COLUMN quant_consumida INTEGER COMMENT 'Quantidade consumida dos consumos contratados.';
 
-ALTER TABLE consumos MODIFY COLUMN codigo_servico VARCHAR(50) COMMENT 'Código dos serviços do evento (alimentícios).';
+ALTER TABLE consumos MODIFY COLUMN codigo_servico VARCHAR(50) COMMENT 'CÃ³digo dos serviÃ§os do evento (alimentÃ­cios).';
 
 
 CREATE TABLE bebidas (
@@ -256,7 +257,7 @@ CREATE TABLE bebidas (
 
 ALTER TABLE bebidas COMMENT 'Tabela que armazena dados sobre as bebidas oferecidas nos eventos.';
 
-ALTER TABLE bebidas MODIFY COLUMN codigo_servico VARCHAR(50) COMMENT 'Código dos serviços de bebidas.';
+ALTER TABLE bebidas MODIFY COLUMN codigo_servico VARCHAR(50) COMMENT 'CÃ³digo dos serviÃ§os de bebidas.';
 
 ALTER TABLE bebidas MODIFY COLUMN nome_bebida VARCHAR(50) COMMENT 'Nome da bebida oferecida nos eventos.';
 
@@ -272,11 +273,11 @@ CREATE TABLE comidas (
 
 ALTER TABLE comidas COMMENT 'Tabela que armazena dados sobre as comidas oferecidas nos eventos.';
 
-ALTER TABLE comidas MODIFY COLUMN codigo_servico VARCHAR(50) COMMENT 'Código dos serviços de comidas.';
+ALTER TABLE comidas MODIFY COLUMN codigo_servico VARCHAR(50) COMMENT 'CÃ³digo dos serviÃ§os de comidas.';
 
 ALTER TABLE comidas MODIFY COLUMN nome_comida VARCHAR(50) COMMENT 'Nome das comidas oferecidas nos eventos.';
 
-ALTER TABLE comidas MODIFY COLUMN teor_calorico DECIMAL(3, 3) COMMENT 'Teor calórico das respectivas comidas.';
+ALTER TABLE comidas MODIFY COLUMN teor_calorico DECIMAL(3, 3) COMMENT 'Teor calÃ³rico das respectivas comidas.';
 
 
 ALTER TABLE profissionais ADD CONSTRAINT enderecos_profissionais_fk
@@ -309,15 +310,27 @@ REFERENCES cozinheiros (codigo_profissional)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
-ALTER TABLE equipes ADD CONSTRAINT profissionais_equipes_fk
-FOREIGN KEY (codigo_profissional)
-REFERENCES profissionais (codigo_profissional)
+ALTER TABLE telefones ADD CONSTRAINT convidados_telefones_fk
+FOREIGN KEY (codigo_dono)
+REFERENCES convidados (codigo_convidado)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
-ALTER TABLE telefones ADD CONSTRAINT profissionais_telefones_fk
-FOREIGN KEY (codigo_dono)
-REFERENCES profissionais (codigo_profissional)
+ALTER TABLE convidados ADD CONSTRAINT telefones_convidados_fk
+FOREIGN KEY (codigo_convidado)
+REFERENCES telefones (codigo_dono)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+
+ALTER TABLE profissionais ADD CONSTRAINT telefones_profissionais_fk
+FOREIGN KEY (codigo_profissional)
+REFERENCES telefones (codigo_dono)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+
+ALTER TABLE clientes ADD CONSTRAINT telefones_clientes_fk
+FOREIGN KEY (codigo_cliente)
+REFERENCES telefones (codigo_dono)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
@@ -345,9 +358,15 @@ REFERENCES eventos (codigo_evento)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
-ALTER TABLE telefones ADD CONSTRAINT convidados_telefones_fk
+ALTER TABLE equipes ADD CONSTRAINT profissionais_equipes_fk
+FOREIGN KEY (codigo_profissional)
+REFERENCES profissionais (codigo_profissional)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+
+ALTER TABLE telefones ADD CONSTRAINT profissionais_telefones_fk
 FOREIGN KEY (codigo_dono)
-REFERENCES convidados (codigo_convidado)
+REFERENCES profissionais (codigo_profissional)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
